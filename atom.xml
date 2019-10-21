@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/anicake/anicake.github.io/"/>
-  <updated>2019-10-14T09:02:48.320Z</updated>
+  <updated>2019-10-21T11:57:07.659Z</updated>
   <id>https://github.com/anicake/anicake.github.io/</id>
   
   <author>
@@ -17,25 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>由浅入深理解java集合框架(一)集合Collection</title>
+    <link href="https://github.com/anicake/anicake.github.io/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-list/"/>
+    <id>https://github.com/anicake/anicake.github.io/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-list/</id>
+    <published>2019-10-20T04:32:09.000Z</published>
+    <updated>2019-10-21T11:57:07.659Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;java集合类简介&quot;&gt;&lt;a href=&quot;#java集合类简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="集合" scheme="https://github.com/anicake/anicake.github.io/categories/%E9%9B%86%E5%90%88/"/>
+    
+    
+      <category term="集合框架" scheme="https://github.com/anicake/anicake.github.io/tags/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>第一篇博客</title>
     <link href="https://github.com/anicake/anicake.github.io/2019/10/14/di-yi-pian-bo-ke/"/>
     <id>https://github.com/anicake/anicake.github.io/2019/10/14/di-yi-pian-bo-ke/</id>
     <published>2019-10-14T09:02:48.000Z</published>
-    <updated>2019-10-14T09:02:48.320Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://github.com/anicake/anicake.github.io/2019/10/14/hello-world/"/>
-    <id>https://github.com/anicake/anicake.github.io/2019/10/14/hello-world/</id>
-    <published>2019-10-14T03:09:22.338Z</published>
-    <updated>2019-10-14T03:09:22.338Z</updated>
+    <updated>2019-10-21T12:06:22.086Z</updated>
     
     <summary type="html">
     
@@ -43,29 +55,7 @@
       
         
         
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>二零一七年终总结</title>
-    <link href="https://github.com/anicake/anicake.github.io/2018/01/22/2017-conclusion/"/>
-    <id>https://github.com/anicake/anicake.github.io/2018/01/22/2017-conclusion/</id>
-    <published>2018-01-22T04:32:09.000Z</published>
-    <updated>2019-10-17T07:49:59.199Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+          &lt;p&gt;hello world
         
       
     
