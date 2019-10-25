@@ -33,7 +33,7 @@
       <link href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-map/"/>
       <url>/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-map/</url>
       
-        <content type="html"><![CDATA[<h1 id="Map简介"><a href="#Map简介" class="headerlink" title="Map简介"></a>Map简介</h1><hr><p>map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap</p><h1 id="java-Map之HashMap"><a href="#java-Map之HashMap" class="headerlink" title="java Map之HashMap"></a>java Map之HashMap</h1><hr><p>java中HashMap是我们日常开发中最常使用的map，HashMap（ jdk1.8以后）底层是基于数组（hash表）+ 链表 + 红黑树来实现的。 </p>]]></content>
+        <content type="html"><![CDATA[<h1 id="Map简介"><a href="#Map简介" class="headerlink" title="Map简介"></a>Map简介</h1><hr><p>map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap</p><h1 id="java-Map之HashMap"><a href="#java-Map之HashMap" class="headerlink" title="java Map之HashMap"></a>java Map之HashMap</h1><hr><p>java中HashMap是我们日常开发中最常使用的map，HashMap（ jdk1.8以后）底层是基于数组（hash散列）+ 链表 + 红黑树来实现的。 HashMap的优势是可以很快的根据键（key）找到对应的值（value）,HashMap存储的时候是无序的,通过put进来的元素key的hashCode计算该元素在数组上的索引，把元素放到上面去，用链表和红黑树来解决hash碰撞的问题。</p>]]></content>
       
       
       <categories>
