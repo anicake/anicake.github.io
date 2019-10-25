@@ -4,12 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="由浅入深理解java集合框架(一)集合Collection, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
+    <meta name="keywords" content="由浅入深理解java集合框架(二)集合Map, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="java集合类简介
-java集合大致分为List、Set、Queue、Map四种体系，其中List为有序的可重复的集合，Set无序且不可重复的集合，Queue是java 5之后新增的基于队列实现的集合。java的集合就像一个容器，可以把多个">
+    <meta name="description" content="Map简介
+map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap
+java Map之HashMap
+java中HashM">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@ java集合大致分为List、Set、Queue、Map四种体系，其中List为有序
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>由浅入深理解java集合框架(一)集合Collection | 蛋糕店的博客</title>
+    <title>由浅入深理解java集合框架(二)集合Map | 蛋糕店的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -291,13 +293,13 @@ java集合大致分为List、Set、Queue、Map四种体系，其中List为有序
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        由浅入深理解java集合框架(一)集合Collection
+                        由浅入深理解java集合框架(二)集合Map
                     </div>
                 </div>
             </div>
@@ -420,8 +422,8 @@ java集合大致分为List、Set、Queue、Map四种体系，其中List为有序
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/集合/" class="post-category" target="_blank">
-                            集合
+                        <a href="/categories/Map/" class="post-category" target="_blank">
+                            Map
                         </a>
                         
                     </div>
@@ -446,14 +448,14 @@ java集合大致分为List、Set、Queue、Map四种体系，其中List为有序
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    99
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    1 分
                 </div>
                 
                 
@@ -469,116 +471,10 @@ java集合大致分为List、Set、Queue、Map四种体系，其中List为有序
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="java集合类简介"><a href="#java集合类简介" class="headerlink" title="java集合类简介"></a>java集合类简介</h1><hr>
-<p>java集合大致分为List、Set、Queue、Map四种体系，其中List为有序的可重复的集合，Set无序且不可重复的集合，Queue是java 5之后新增的基于队列实现的集合。<br>java的集合就像一个容器，可以把多个对象扔进去，支持对容器中增、删、改、查、迭代等操作。</p>
-<h1 id="java集合和数组的区别"><a href="#java集合和数组的区别" class="headerlink" title="java集合和数组的区别"></a>java集合和数组的区别</h1><hr>
-<p>1、数组的长度需要在初始化固定，意味着数组最多只能保存定长的数据，而集合可以保存不确定长度的数据<br>2、数组可以保存基本数据类型的数据，也可以保存对象类型的数据，集合只能保存对象类型的数据（指对象的引用）</p>
-<h1 id="List集合"><a href="#List集合" class="headerlink" title="List集合"></a>List集合</h1><hr>
-<p>List是一个有序且可重复的集合，list默认按照添加元素的顺序设置元素的索引，用户可以通过索引直接访问list集合中的元素。List接口中包含以下方法：<br><img src="list1.png" alt><br><img src="list2.png" alt></p>
-<h2 id="List集合实现之ArrayList"><a href="#List集合实现之ArrayList" class="headerlink" title="List集合实现之ArrayList"></a>List集合实现之ArrayList</h2><p>ArrayList线程不安全底层是基于数组的数据结构实现的，数组长度不够时通过reSize扩容每次扩容当前长度的一半来实现动态数组。由于ArrayList底层的数据结构为数组，每个元素都有对应的索引，因此ArrayList也和数组一样具有随机访问的能力适合随机查找和遍历，不适合经常需要插入和删除操作。<br>ArrayList添加元素</p>
-<pre class="line-numbers language-bash"><code class="language-bash">    public boolean add<span class="token punctuation">(</span>E e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        ensureCapacityInternal<span class="token punctuation">(</span>size + 1<span class="token punctuation">)</span><span class="token punctuation">;</span>  // Increments modCount<span class="token operator">!</span><span class="token operator">!</span>
-        elementData<span class="token punctuation">[</span>size++<span class="token punctuation">]</span> <span class="token operator">=</span> e<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>ArrayList扩容</p>
-<pre class="line-numbers language-bash"><code class="language-bash">    private void grow<span class="token punctuation">(</span>int minCapacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        // overflow-conscious code
-        int oldCapacity <span class="token operator">=</span> elementData.length<span class="token punctuation">;</span>
-        int newCapacity <span class="token operator">=</span> oldCapacity + <span class="token punctuation">(</span>oldCapacity <span class="token operator">>></span> 1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>newCapacity - minCapacity <span class="token operator">&lt;</span> 0<span class="token punctuation">)</span>
-            newCapacity <span class="token operator">=</span> minCapacity<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>newCapacity - MAX_ARRAY_SIZE <span class="token operator">></span> 0<span class="token punctuation">)</span>
-            newCapacity <span class="token operator">=</span> hugeCapacity<span class="token punctuation">(</span>minCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        // minCapacity is usually close to size, so this is a win:
-        elementData <span class="token operator">=</span> Arrays.copyOf<span class="token punctuation">(</span>elementData, newCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="List集合实现之LinkedList"><a href="#List集合实现之LinkedList" class="headerlink" title="List集合实现之LinkedList"></a>List集合实现之LinkedList</h2><p>LinkedList是线程不安全底层基于双向链表实现的集合，链表的特点:插入和删除比较快，不支持随机访问所以查询和遍历比较慢，可以用来当作堆、栈、队列、双向队列的底层数据结构。</p>
-<h2 id="List集合实现之Vector"><a href="#List集合实现之Vector" class="headerlink" title="List集合实现之Vector"></a>List集合实现之Vector</h2><p>Vector是线程安全的，也就是说是它的方法之间是线程同步的，底层的存储的数据和ArrayList一样都是数组</p>
-<h1 id="Set集合"><a href="#Set集合" class="headerlink" title="Set集合"></a>Set集合</h1><hr>
-<p>Set是无需且不可重复的集合判断两个对象是否重复是用的equals而不是==，元素添加添加进集合是无序的，用户无法通过索引直接对Set中的集合进行访问，Set集合接口中包含以下方法：<br><img src="set1.png" alt></p>
-<h2 id="Set集合实现之HashSet"><a href="#Set集合实现之HashSet" class="headerlink" title="Set集合实现之HashSet"></a>Set集合实现之HashSet</h2><p>HashSet有以下特点</p>
-<ul>
-<li>不能保证元素的排列顺序，顺序有可能发生变化</li>
-<li>不是同步的</li>
-<li>集合元素可以是null,但只能放入一个null<br>HashSet是采用hash表来实现的用hashMap来存储数据。其中的元素没有按顺序排列，add()、remove()以及contains()等方法都是复杂度为O(1)的方法。</li>
-</ul>
-<h2 id="Set集合实现之LinkedHashSet"><a href="#Set集合实现之LinkedHashSet" class="headerlink" title="Set集合实现之LinkedHashSet"></a>Set集合实现之LinkedHashSet</h2><p>LinkedHashSet介于HashSet和TreeSet之间。它也是一个hash表，但是同时维护了一个双链表来记录插入的顺序。基本方法的复杂度为O(1)。</p>
-<h2 id="Set集合实现之TreeSet"><a href="#Set集合实现之TreeSet" class="headerlink" title="Set集合实现之TreeSet"></a>Set集合实现之TreeSet</h2><p>TreeSet是采用树结构实现(红黑树算法)。元素是按顺序进行排列，但是add()、remove()以及contains()等方法都是复杂度为O(log (n))的方法。它还提供了一些方法来处理排序的set，如first(), last(), headSet(), tailSet()等等。</p>
-<h1 id="Queue集合"><a href="#Queue集合" class="headerlink" title="Queue集合"></a>Queue集合</h1><hr>
-<p>Queue集合底层采用的是队列的数据结构，队列是一种特殊的线性列表，它只允许从前端(front)进行出队操作，从后端进行插入操作。在队列这种数据结构中，最先插入的元素将是最先被删除的元素；反之最后插入的元素将是最后被删除的元素，因此队列又称为“先进先出”（FIFO—first in first out）的线性表。Queue集合接口方法:<br><img src="queue1.png" alt></p>
-<h2 id="Queue集合实现之PriorityQueue"><a href="#Queue集合实现之PriorityQueue" class="headerlink" title="Queue集合实现之PriorityQueue"></a>Queue集合实现之PriorityQueue</h2><hr>
-<p>PriorityQueue是一种比较标准的队列实现类，而不是绝对标准的。这是因为PriorityQueue保存队列元素的顺序不是按照元素添加的顺序来保存的，而是在添加元素的时候对元素的大小排序后再保存的。因此在PriorityQueue中使用peek()或pool()取出队列中头部的元素，取出的不是最先添加的元素，而是最小的元素。<br>PriorityQueue不允许插入null元素，它还需要对队列元素进行排序，PriorityQueue有两种排序方式：</p>
-<p>自然排序：采用自然排序的PriorityQueue集合中的元素必须实现Comparator接口，而且应该是一个类的多个实例，否则可能导致ClassCastException异常。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">PriorityQueue<span class="token operator">&lt;</span>Integer<span class="token operator">></span> queue2 <span class="token operator">=</span> new PriorityQueue<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue2.offer<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue2.offer<span class="token punctuation">(</span>3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue2.offer<span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue2.offer<span class="token punctuation">(</span>4<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>queue2.isEmpty<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
-    System.out.println<span class="token punctuation">(</span>queue2.poll<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输出&gt;&gt;&gt;&gt;&gt; 1 2 3 4</p>
-<p>定制排序：创建PriorityQueue队列时，传入一个Comparable对象，该对象负责对所有队列中的所有元素进行排序。采用定制排序不要求必须实现Comparator接口。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">PriorityQueue<span class="token operator">&lt;</span>Integer<span class="token operator">></span> queue <span class="token operator">=</span> new PriorityQueue<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>new Comparator<span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    @Override
-    public int compare<span class="token punctuation">(</span>Integer o1, Integer o2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> o2 - o1<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue.offer<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue.offer<span class="token punctuation">(</span>3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue.offer<span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue.offer<span class="token punctuation">(</span>4<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>queue.isEmpty<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
-    System.out.println<span class="token punctuation">(</span>queue.poll<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输出&gt;&gt;&gt;&gt;&gt; 4 3 2 1</p>
-<h2 id="Queue集合之DeQueue接口与实现ArrayDeque"><a href="#Queue集合之DeQueue接口与实现ArrayDeque" class="headerlink" title="Queue集合之DeQueue接口与实现ArrayDeque"></a>Queue集合之DeQueue接口与实现ArrayDeque</h2><hr>
-<p>Deque接口是Queue接口的子接口，它代表一个双端队列，Deque定义了一些方法：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">void addFirst<span class="token punctuation">(</span>Object e<span class="token punctuation">)</span>: 　　将指定元素添加到双端队列的头部。
-
-void addLast<span class="token punctuation">(</span>Object e<span class="token punctuation">)</span>:　　将指定元素添加到双端队列的尾部。
-
-Iteratord descendingItrator<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　返回该双端队列对应的迭代器，该迭代器以逆向顺序来迭代队列中的元素。
-
-Object getFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取但不删除双端队列的第一个元素。
-
-Object getLast<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取但不删除双端队列的最后一个元素。
-
-boolean offFirst<span class="token punctuation">(</span>Object e<span class="token punctuation">)</span>:　　将指定元素添加到双端队列的头部。
-
-boolean offLast<span class="token punctuation">(</span>OBject e<span class="token punctuation">)</span>:　　将指定元素添加到双端队列的尾部。
-
-Object peekFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取但不删除双端队列的第一个元素；如果双端队列为空，则返回null。
-
-Object PeekLast<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取但不删除双端队列的最后一个元素；如果双端队列为空，则返回null。
-
-Object pollFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取并删除双端队列的第一个元素；如果双端队列为空，则返回null。
-
-Object pollLast<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取并删除双端队列的最后一个元素；如果双端队列为空，则返回null。
-
-Object pop<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>栈方法<span class="token punctuation">)</span>:　　pop出该双端队列所表示的栈的栈顶元素。相当于removeFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>。
-
-void push<span class="token punctuation">(</span>Object e<span class="token punctuation">)</span><span class="token punctuation">(</span>栈方法<span class="token punctuation">)</span>：　　将一个元素push进该双端队列所表示的栈的栈顶。相当于addFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>。
-
-Object removeFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取并删除该双端队列的第一个元素。
-
-Object removeFirstOccurence<span class="token punctuation">(</span>Object o<span class="token punctuation">)</span>:　　删除该双端队列的第一次出现的元素o。
-
-Object removeLast<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取并删除该双端队列的最后一个元素o。
-
-Object removeLastOccurence<span class="token punctuation">(</span>Object o<span class="token punctuation">)</span>:　　删除该双端队列的最后一次出现的元素o。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>利用ArrayDequeue实现栈,输出结果&gt;&gt;&gt;&gt;&gt;安妮de小熊</p>
-<pre class="line-numbers language-bash"><code class="language-bash">ArrayDeque<span class="token operator">&lt;</span>String<span class="token operator">></span> deque <span class="token operator">=</span> new ArrayDeque<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-deque.push<span class="token punctuation">(</span><span class="token string">"熊"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-deque.push<span class="token punctuation">(</span><span class="token string">"小"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-deque.push<span class="token punctuation">(</span><span class="token string">"de"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-deque.push<span class="token punctuation">(</span><span class="token string">"妮"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-deque.push<span class="token punctuation">(</span><span class="token string">"安"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>deque.isEmpty<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
-    System.out.println<span class="token punctuation">(</span>deque.pop<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h1 id="Map简介"><a href="#Map简介" class="headerlink" title="Map简介"></a>Map简介</h1><hr>
+<p>map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap</p>
+<h1 id="java-Map之HashMap"><a href="#java-Map之HashMap" class="headerlink" title="java Map之HashMap"></a>java Map之HashMap</h1><hr>
+<p>java中HashMap是我们日常开发中最常使用的map，HashMap（ jdk1.8以后）底层是基于数组（hash表）+ 链表 + 红黑树来实现的。 </p>
 
             </div>
             <hr />
@@ -737,9 +633,9 @@ deque.push<span class="token punctuation">(</span><span class="token string">"�
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《由浅入深理解java集合框架(一)集合Collection》
+                    《由浅入深理解java集合框架(二)集合Map》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-list/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-map/" property="cc:attributionName"
                rel="cc:attributionURL">
                 蛋糕店
             </a> 采用
@@ -780,7 +676,7 @@ deque.push<span class="token punctuation">(</span><span class="token string">"�
         repo: 'https://github.com/anicake/anicake.github.io',
         owner: 'anicake',
         admin: "godweiyang",
-        id: '2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-list/',
+        id: '2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-map/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1068,11 +964,61 @@ deque.push<span class="token punctuation">(</span><span class="token string">"�
                 <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-list/">
+                <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-map/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="由浅入深理解java集合框架(一)集合Collection">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="由浅入深理解java集合框架(二)集合Map">
+                        
+                        <span class="card-title">由浅入深理解java集合框架(二)集合Map</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            本篇文章主要对java集合的框架进行介绍，使大家对java集合的整体框架有个了解。具体介绍了Map接口以及Map的实现类，HashMap，LinkedHashMap，TreeMap。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Map/" class="post-category" target="_blank">
+                                    Map
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/集合框架/" target="_blank">
+                        <span class="chip bg-color">集合框架</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-collection/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="由浅入深理解java集合框架(一)集合Collection">
                         
                         <span class="card-title">由浅入深理解java集合框架(一)集合Collection</span>
                     </div>
@@ -1099,62 +1045,11 @@ deque.push<span class="token punctuation">(</span><span class="token string">"�
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/集合框架/" target="_blank">
                         <span class="chip bg-color">集合框架</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/10/14/di-yi-pian-bo-ke/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="第一篇博客">
-                        
-                        <span class="card-title">第一篇博客</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            hello world ！！！！！！！！！！！！开启我的博客之旅。。
-
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-14
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                    随笔
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/随笔/" target="_blank">
-                        <span class="chip bg-color">随笔</span>
                     </a>
                     
                 </div>
@@ -1309,7 +1204,7 @@ deque.push<span class="token punctuation">(</span><span class="token string">"�
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">1.8k</span>
+            <span class="white-color">1.9k</span>
             
 
             <br>

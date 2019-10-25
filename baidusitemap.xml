@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://github.com/anicake/anicake.github.io/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-map/</loc>
+    <lastmod>2019-10-25</lastmod>
+  </url>  <url>
     <loc>https://github.com/anicake/anicake.github.io/2019/10/14/di-yi-pian-bo-ke/</loc>
     <lastmod>2019-10-21</lastmod>
   </url>  <url>
-    <loc>https://github.com/anicake/anicake.github.io/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-list/</loc>
+    <loc>https://github.com/anicake/anicake.github.io/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-collection/</loc>
     <lastmod>2019-10-21</lastmod>
   </url>
 </urlset>
