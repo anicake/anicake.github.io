@@ -4,14 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="由浅入深理解java集合框架(二)集合Map, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
+    <meta name="keywords" content="由浅入深理解java集合框架(二)集合HashMap, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
     <meta name="description" content="Map简介
 map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap
-java Map之HashMap
-java中HashM">
+java Map实现之HashMap
+java中Has">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@ java中HashM">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>由浅入深理解java集合框架(二)集合Map | 蛋糕店的博客</title>
+    <title>由浅入深理解java集合框架(二)集合HashMap | 蛋糕店的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -293,13 +293,13 @@ java中HashM">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        由浅入深理解java集合框架(二)集合Map
+                        由浅入深理解java集合框架(二)集合HashMap
                     </div>
                 </div>
             </div>
@@ -448,14 +448,14 @@ java中HashM">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
                 
@@ -473,7 +473,7 @@ java中HashM">
             <div id="articleContent">
                 <h1 id="Map简介"><a href="#Map简介" class="headerlink" title="Map简介"></a>Map简介</h1><hr>
 <p>map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap</p>
-<h1 id="java-Map之HashMap"><a href="#java-Map之HashMap" class="headerlink" title="java Map之HashMap"></a>java Map之HashMap</h1><hr>
+<h1 id="java-Map实现之HashMap"><a href="#java-Map实现之HashMap" class="headerlink" title="java Map实现之HashMap"></a>java Map实现之HashMap</h1><hr>
 <p>java中HashMap是我们日常开发中最常使用的map，HashMap（ jdk1.8以后）底层是基于数组（hash散列）+ 链表 + 红黑树来实现的。 HashMap的优势是可以很快的根据键（key）找到对应的值（value）,HashMap存储的时候是无序的,通过put进来的元素key的hashCode计算该元素在数组上的索引，把元素放到上面去，用链表和红黑树来解决hash碰撞的问题。</p>
 <h2 id="HashMap-put函数的实现"><a href="#HashMap-put函数的实现" class="headerlink" title="HashMap put函数的实现"></a>HashMap put函数的实现</h2><hr>
 <p>下面是我们hashMap中put元素时的操作：</p>
@@ -576,6 +576,13 @@ final Node<span class="token operator">&lt;</span>K,V<span class="token operator
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> null<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>hashMap的hash函数的实现</strong><br>在get和put的过程中，计算下标时，先对hashCode进行hash操作，然后再通过hash值进一步计算下标，如下图所示：<br><img src="hashmap2.png" alt><br>代码具体的逻辑为，根据key计算出的hashCode高16位不变，低16位和高16位做一个异或的运算。代码如下</p>
+<pre class="line-numbers language-bash"><code class="language-bash">static final int hash<span class="token punctuation">(</span>Object key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    int h<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>key <span class="token operator">==</span> null<span class="token punctuation">)</span> ? 0 <span class="token keyword">:</span> <span class="token punctuation">(</span>h <span class="token operator">=</span> key.hashCode<span class="token punctuation">(</span><span class="token punctuation">))</span> ^ <span class="token punctuation">(</span>h <span class="token operator">>></span><span class="token operator">></span> 16<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>因为目前的table长度n为2的幂，而计算下标的时候，是这样实现的(使用&amp;位操作，而非%求余)：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">(</span>n - 1<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token function">hash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -734,7 +741,7 @@ final Node<span class="token operator">&lt;</span>K,V<span class="token operator
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《由浅入深理解java集合框架(二)集合Map》
+                    《由浅入深理解java集合框架(二)集合HashMap》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-map/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -1304,7 +1311,7 @@ final Node<span class="token operator">&lt;</span>K,V<span class="token operator
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">2.9k</span>
+            <span class="white-color">3k</span>
             
 
             <br>
