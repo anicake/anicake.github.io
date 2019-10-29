@@ -4,12 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="由浅入深理解java集合框架(一)集合Collection, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
+    <meta name="keywords" content="由浅入深理解java集合框架(二)集合HashMap, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="java集合类简介
-java集合大致分为List、Set、Queue、Map四种体系，其中List为有序的可重复的集合，Set无序且不可重复的集合，Queue是java 5之后新增的基于队列实现的集合。java的集合就像一个容器，可以把多个">
+    <meta name="description" content="Map简介
+map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap
+java Map实现之HashMap
+java中Has">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@ java集合大致分为List、Set、Queue、Map四种体系，其中List为有序
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>由浅入深理解java集合框架(一)集合Collection | 蛋糕店的博客</title>
+    <title>由浅入深理解java集合框架(二)集合HashMap | 蛋糕店的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -291,13 +293,13 @@ java集合大致分为List、Set、Queue、Map四种体系，其中List为有序
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        由浅入深理解java集合框架(一)集合Collection
+                        由浅入深理解java集合框架(二)集合HashMap
                     </div>
                 </div>
             </div>
@@ -420,8 +422,8 @@ java集合大致分为List、Set、Queue、Map四种体系，其中List为有序
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/集合/" class="post-category" target="_blank">
-                            集合
+                        <a href="/categories/Map/" class="post-category" target="_blank">
+                            Map
                         </a>
                         
                     </div>
@@ -446,14 +448,14 @@ java集合大致分为List、Set、Queue、Map四种体系，其中List为有序
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    5 分
                 </div>
                 
                 
@@ -469,116 +471,118 @@ java集合大致分为List、Set、Queue、Map四种体系，其中List为有序
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="java集合类简介"><a href="#java集合类简介" class="headerlink" title="java集合类简介"></a>java集合类简介</h1><hr>
-<p>java集合大致分为List、Set、Queue、Map四种体系，其中List为有序的可重复的集合，Set无序且不可重复的集合，Queue是java 5之后新增的基于队列实现的集合。<br>java的集合就像一个容器，可以把多个对象扔进去，支持对容器中增、删、改、查、迭代等操作。</p>
-<h1 id="java集合和数组的区别"><a href="#java集合和数组的区别" class="headerlink" title="java集合和数组的区别"></a>java集合和数组的区别</h1><hr>
-<p>1、数组的长度需要在初始化固定，意味着数组最多只能保存定长的数据，而集合可以保存不确定长度的数据<br>2、数组可以保存基本数据类型的数据，也可以保存对象类型的数据，集合只能保存对象类型的数据（指对象的引用）</p>
-<h1 id="List集合"><a href="#List集合" class="headerlink" title="List集合"></a>List集合</h1><hr>
-<p>List是一个有序且可重复的集合，list默认按照添加元素的顺序设置元素的索引，用户可以通过索引直接访问list集合中的元素。List接口中包含以下方法：<br><img src="list1.png" alt><br><img src="list2.png" alt></p>
-<h2 id="List集合实现之ArrayList"><a href="#List集合实现之ArrayList" class="headerlink" title="List集合实现之ArrayList"></a>List集合实现之ArrayList</h2><p>ArrayList线程不安全底层是基于数组的数据结构实现的，数组长度不够时通过reSize扩容每次扩容当前长度的一半来实现动态数组。由于ArrayList底层的数据结构为数组，每个元素都有对应的索引，因此ArrayList也和数组一样具有随机访问的能力适合随机查找和遍历，不适合经常需要插入和删除操作。<br>ArrayList添加元素</p>
-<pre class="line-numbers language-bash"><code class="language-bash">    public boolean add<span class="token punctuation">(</span>E e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        ensureCapacityInternal<span class="token punctuation">(</span>size + 1<span class="token punctuation">)</span><span class="token punctuation">;</span>  // Increments modCount<span class="token operator">!</span><span class="token operator">!</span>
-        elementData<span class="token punctuation">[</span>size++<span class="token punctuation">]</span> <span class="token operator">=</span> e<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>ArrayList扩容</p>
-<pre class="line-numbers language-bash"><code class="language-bash">    private void grow<span class="token punctuation">(</span>int minCapacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        // overflow-conscious code
-        int oldCapacity <span class="token operator">=</span> elementData.length<span class="token punctuation">;</span>
-        int newCapacity <span class="token operator">=</span> oldCapacity + <span class="token punctuation">(</span>oldCapacity <span class="token operator">>></span> 1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>newCapacity - minCapacity <span class="token operator">&lt;</span> 0<span class="token punctuation">)</span>
-            newCapacity <span class="token operator">=</span> minCapacity<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>newCapacity - MAX_ARRAY_SIZE <span class="token operator">></span> 0<span class="token punctuation">)</span>
-            newCapacity <span class="token operator">=</span> hugeCapacity<span class="token punctuation">(</span>minCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        // minCapacity is usually close to size, so this is a win:
-        elementData <span class="token operator">=</span> Arrays.copyOf<span class="token punctuation">(</span>elementData, newCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="List集合实现之LinkedList"><a href="#List集合实现之LinkedList" class="headerlink" title="List集合实现之LinkedList"></a>List集合实现之LinkedList</h2><p>LinkedList是线程不安全底层基于双向链表实现的集合，链表的特点:插入和删除比较快，不支持随机访问所以查询和遍历比较慢，可以用来当作堆、栈、队列、双向队列的底层数据结构。</p>
-<h2 id="List集合实现之Vector"><a href="#List集合实现之Vector" class="headerlink" title="List集合实现之Vector"></a>List集合实现之Vector</h2><p>Vector是线程安全的，也就是说是它的方法之间是线程同步的，底层的存储的数据和ArrayList一样都是数组</p>
-<h1 id="Set集合"><a href="#Set集合" class="headerlink" title="Set集合"></a>Set集合</h1><hr>
-<p>Set是无需且不可重复的集合判断两个对象是否重复是用的equals而不是==，元素添加添加进集合是无序的，用户无法通过索引直接对Set中的集合进行访问，Set集合接口中包含以下方法：<br><img src="set1.png" alt></p>
-<h2 id="Set集合实现之HashSet"><a href="#Set集合实现之HashSet" class="headerlink" title="Set集合实现之HashSet"></a>Set集合实现之HashSet</h2><p>HashSet有以下特点</p>
-<ul>
-<li>不能保证元素的排列顺序，顺序有可能发生变化</li>
-<li>不是同步的</li>
-<li>集合元素可以是null,但只能放入一个null<br>HashSet是采用hash表来实现的用hashMap来存储数据。其中的元素没有按顺序排列，add()、remove()以及contains()等方法都是复杂度为O(1)的方法。</li>
-</ul>
-<h2 id="Set集合实现之LinkedHashSet"><a href="#Set集合实现之LinkedHashSet" class="headerlink" title="Set集合实现之LinkedHashSet"></a>Set集合实现之LinkedHashSet</h2><p>LinkedHashSet介于HashSet和TreeSet之间。它也是一个hash表，但是同时维护了一个双链表来记录插入的顺序。基本方法的复杂度为O(1)。</p>
-<h2 id="Set集合实现之TreeSet"><a href="#Set集合实现之TreeSet" class="headerlink" title="Set集合实现之TreeSet"></a>Set集合实现之TreeSet</h2><p>TreeSet是采用树结构实现(红黑树算法)。元素是按顺序进行排列，但是add()、remove()以及contains()等方法都是复杂度为O(log (n))的方法。它还提供了一些方法来处理排序的set，如first(), last(), headSet(), tailSet()等等。</p>
-<h1 id="Queue集合"><a href="#Queue集合" class="headerlink" title="Queue集合"></a>Queue集合</h1><hr>
-<p>Queue集合底层采用的是队列的数据结构，队列是一种特殊的线性列表，它只允许从前端(front)进行出队操作，从后端进行插入操作。在队列这种数据结构中，最先插入的元素将是最先被删除的元素；反之最后插入的元素将是最后被删除的元素，因此队列又称为“先进先出”（FIFO—first in first out）的线性表。Queue集合接口方法:<br><img src="queue1.png" alt></p>
-<h2 id="Queue集合实现之PriorityQueue"><a href="#Queue集合实现之PriorityQueue" class="headerlink" title="Queue集合实现之PriorityQueue"></a>Queue集合实现之PriorityQueue</h2><hr>
-<p>PriorityQueue是一种比较标准的队列实现类，而不是绝对标准的。这是因为PriorityQueue保存队列元素的顺序不是按照元素添加的顺序来保存的，而是在添加元素的时候对元素的大小排序后再保存的。因此在PriorityQueue中使用peek()或pool()取出队列中头部的元素，取出的不是最先添加的元素，而是最小的元素。<br>PriorityQueue不允许插入null元素，它还需要对队列元素进行排序，PriorityQueue有两种排序方式：</p>
-<p>自然排序：采用自然排序的PriorityQueue集合中的元素必须实现Comparator接口，而且应该是一个类的多个实例，否则可能导致ClassCastException异常。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">PriorityQueue<span class="token operator">&lt;</span>Integer<span class="token operator">></span> queue2 <span class="token operator">=</span> new PriorityQueue<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue2.offer<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue2.offer<span class="token punctuation">(</span>3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue2.offer<span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue2.offer<span class="token punctuation">(</span>4<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>queue2.isEmpty<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
-    System.out.println<span class="token punctuation">(</span>queue2.poll<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输出&gt;&gt;&gt;&gt;&gt; 1 2 3 4</p>
-<p>定制排序：创建PriorityQueue队列时，传入一个Comparable对象，该对象负责对所有队列中的所有元素进行排序。采用定制排序不要求必须实现Comparator接口。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">PriorityQueue<span class="token operator">&lt;</span>Integer<span class="token operator">></span> queue <span class="token operator">=</span> new PriorityQueue<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>new Comparator<span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    @Override
-    public int compare<span class="token punctuation">(</span>Integer o1, Integer o2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> o2 - o1<span class="token punctuation">;</span>
+                <h1 id="Map简介"><a href="#Map简介" class="headerlink" title="Map简介"></a>Map简介</h1><hr>
+<p>map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap</p>
+<h1 id="java-Map实现之HashMap"><a href="#java-Map实现之HashMap" class="headerlink" title="java Map实现之HashMap"></a>java Map实现之HashMap</h1><hr>
+<p>java中HashMap是我们日常开发中最常使用的map，HashMap（ jdk1.8以后）底层是基于数组（hash散列）+ 链表 + 红黑树来实现的。 HashMap的优势是可以很快的根据键（key）找到对应的值（value）,HashMap存储的时候是无序的,通过put进来的元素key的hashCode计算该元素在数组上的索引，把元素放到上面去，用链表和红黑树来解决hash碰撞的问题。</p>
+<h2 id="HashMap-put函数的实现"><a href="#HashMap-put函数的实现" class="headerlink" title="HashMap put函数的实现"></a>HashMap put函数的实现</h2><hr>
+<p>下面是我们hashMap中put元素时的操作：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">HashMap<span class="token operator">&lt;</span>String,Integer<span class="token operator">></span> map <span class="token operator">=</span> new HashMap<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"语文"</span>, 1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"数学"</span>, 2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"英语"</span>, 3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"历史"</span>, 4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"政治"</span>, 5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"地理"</span>, 6<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"生物"</span>, 7<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"化学"</span>, 8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>Map.Entry<span class="token operator">&lt;</span>String,Integer<span class="token operator">></span> entry <span class="token keyword">:</span> map.entrySet<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
+         System.out.println<span class="token punctuation">(</span>entry.getKey<span class="token punctuation">(</span><span class="token punctuation">)</span> + <span class="token string">"-->"</span>+entry.getValue<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue.offer<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue.offer<span class="token punctuation">(</span>3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue.offer<span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-queue.offer<span class="token punctuation">(</span>4<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>queue.isEmpty<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
-    System.out.println<span class="token punctuation">(</span>queue.poll<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输出&gt;&gt;&gt;&gt;&gt; 4 3 2 1</p>
-<h2 id="Queue集合之DeQueue接口与实现ArrayDeque"><a href="#Queue集合之DeQueue接口与实现ArrayDeque" class="headerlink" title="Queue集合之DeQueue接口与实现ArrayDeque"></a>Queue集合之DeQueue接口与实现ArrayDeque</h2><hr>
-<p>Deque接口是Queue接口的子接口，它代表一个双端队列，Deque定义了一些方法：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">void addFirst<span class="token punctuation">(</span>Object e<span class="token punctuation">)</span>: 　　将指定元素添加到双端队列的头部。
+<p>运行结果：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">政治--<span class="token operator">></span>5
+生物--<span class="token operator">></span>7
+历史--<span class="token operator">></span>4
+数学--<span class="token operator">></span>2
+化学--<span class="token operator">></span>8
+语文--<span class="token operator">></span>1
+英语--<span class="token operator">></span>3
+地理--<span class="token operator">></span>6<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看一下hashMap内部的数组元素的分布情况：<br><img src="hashmap1.png" alt><br>上图可以清楚的显示出hashMap添加新元素时的bucket位置不是按照添加顺序的，而是通过计算，hash碰撞时会在当前bucket位置产生一个链表存储。<br><strong>1、HashMap中几个比较重要的成员变量和参数</strong></p>
+<ul>
+<li><strong>initialCapacity（参数）</strong>:initialCapacity初始化map的buckets的数量，默认的情况下是16个。</li>
+<li><strong>loadFactor</strong>:loadFactor负载因子默认为0.75f,reSize的条件当前的hashMap的元素的个数大于loadFactor*capacity会将原来的map扩容至原来的2倍。</li>
+<li><strong>table</strong>:用来装hashMap中的元素。</li>
+<li><strong>size</strong>:当前hashMap所有元素的个数。</li>
+</ul>
+<p><strong>2、put函数的大致流程:</strong><br>1、根据key的hashCode()做hash计算如果没发生碰撞直接将元素插入到计算的bucket上<br>2、如果发生了碰撞和判断当前位置的key做equals如果相等则更新该节点的值<br>3、如果发生碰撞但是key并不相等则在该节点需要以链表的形式存储<br>4、当链表的长度大于等于8(TREEIFY_THRESHOLD)链表转为红黑树<br>5、判断当前hashMap的元素个数是否大于（loadFactor*capacity），如果大于进行reSize<br>代码如下：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">final V putVal<span class="token punctuation">(</span>int hash, K key, V value, boolean onlyIfAbsent,
+                   boolean evict<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> tab<span class="token punctuation">;</span> Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p<span class="token punctuation">;</span> int n, i<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token variable"><span class="token punctuation">((</span>tab <span class="token operator">=</span> table<span class="token punctuation">)</span> <span class="token operator">==</span> null <span class="token operator">||</span> <span class="token punctuation">(</span>n <span class="token operator">=</span> tab.length<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> tab为空则创建
+        n <span class="token operator">=</span> <span class="token punctuation">(</span>tab <span class="token operator">=</span> resize<span class="token punctuation">(</span><span class="token punctuation">))</span></span>.length<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token variable"><span class="token punctuation">((</span>p <span class="token operator">=</span> tab[i <span class="token operator">=</span> <span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> hash]<span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> 计算index，并对null做处理
+        tab[i] <span class="token operator">=</span> newNode<span class="token punctuation">(</span>hash<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    else {
+        Node<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span> e<span class="token punctuation">;</span> K k<span class="token punctuation">;</span>
+        if <span class="token punctuation">(</span>p.hash <span class="token operator">==</span> hash <span class="token operator">&amp;&amp;</span>
+            <span class="token punctuation">((</span>k <span class="token operator">=</span> p.key<span class="token punctuation">)</span> <span class="token operator">==</span> key <span class="token operator">||</span> <span class="token punctuation">(</span>key <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> key.equals<span class="token punctuation">(</span>k<span class="token punctuation">))</span></span><span class="token punctuation">))</span> //判断节点是否存在相同的key
+            e <span class="token operator">=</span> p<span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>p instanceof TreeNode<span class="token punctuation">)</span> // 该链为树
+            e <span class="token operator">=</span> <span class="token variable"><span class="token punctuation">((</span>TreeNode<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span><span class="token punctuation">)</span>p<span class="token punctuation">)</span>.putTreeVal<span class="token punctuation">(</span>this<span class="token punctuation">,</span> tab<span class="token punctuation">,</span> hash<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        else {
+            for <span class="token punctuation">(</span>int binCount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">;</span> <span class="token operator">++</span>binCount<span class="token punctuation">)</span> {
+                if <span class="token punctuation">((</span>e <span class="token operator">=</span> p.next<span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> {
+                    p.next <span class="token operator">=</span> newNode<span class="token punctuation">(</span>hash<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    if <span class="token punctuation">(</span>binCount <span class="token operator">>=</span> TREEIFY_THRESHOLD <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> <span class="token operator">-</span><span class="token number">1</span> for 1st <span class="token operator">/</span><span class="token operator">/</span>链转数
+                        treeifyBin<span class="token punctuation">(</span>tab<span class="token punctuation">,</span> hash<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    break<span class="token punctuation">;</span>
+                }
+                if <span class="token punctuation">(</span>e.hash <span class="token operator">==</span> hash <span class="token operator">&amp;&amp;</span>
+                    <span class="token punctuation">((</span>k <span class="token operator">=</span> e.key<span class="token punctuation">)</span> <span class="token operator">==</span> key <span class="token operator">||</span> <span class="token punctuation">(</span>key <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> key.equals<span class="token punctuation">(</span>k<span class="token punctuation">))</span></span><span class="token punctuation">))</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                p <span class="token operator">=</span> e<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        //节点存在相同的节点，值替换
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span> // existing mapping <span class="token keyword">for</span> key
+            V oldValue <span class="token operator">=</span> e.value<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>onlyIfAbsent <span class="token operator">||</span> oldValue <span class="token operator">==</span> null<span class="token punctuation">)</span>
+                e.value <span class="token operator">=</span> value<span class="token punctuation">;</span>
+            afterNodeAccess<span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> oldValue<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    ++modCount<span class="token punctuation">;</span>
+    //进行reSize操作
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>++size <span class="token operator">></span> threshold<span class="token punctuation">)</span>
+        resize<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    afterNodeInsertion<span class="token punctuation">(</span>evict<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>hashMap的get实现</strong><br>如果理解了put操作get实现就很容易理解了，根据用户传来的key通过hash计算找到对应的索引位置，然后通过equals判断查找对应的key，若为链表查找时间复杂度为O(n)，若为数则时间复杂度为O(logn)。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">public V get<span class="token punctuation">(</span>Object key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> e<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>e <span class="token operator">=</span> getNode<span class="token punctuation">(</span>hash<span class="token punctuation">(</span>key<span class="token punctuation">)</span>, key<span class="token punctuation">))</span> <span class="token operator">==</span> null ? null <span class="token keyword">:</span> e.value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-void addLast<span class="token punctuation">(</span>Object e<span class="token punctuation">)</span>:　　将指定元素添加到双端队列的尾部。
-
-Iteratord descendingItrator<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　返回该双端队列对应的迭代器，该迭代器以逆向顺序来迭代队列中的元素。
-
-Object getFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取但不删除双端队列的第一个元素。
-
-Object getLast<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取但不删除双端队列的最后一个元素。
-
-boolean offFirst<span class="token punctuation">(</span>Object e<span class="token punctuation">)</span>:　　将指定元素添加到双端队列的头部。
-
-boolean offLast<span class="token punctuation">(</span>OBject e<span class="token punctuation">)</span>:　　将指定元素添加到双端队列的尾部。
-
-Object peekFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取但不删除双端队列的第一个元素；如果双端队列为空，则返回null。
-
-Object PeekLast<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取但不删除双端队列的最后一个元素；如果双端队列为空，则返回null。
-
-Object pollFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取并删除双端队列的第一个元素；如果双端队列为空，则返回null。
-
-Object pollLast<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取并删除双端队列的最后一个元素；如果双端队列为空，则返回null。
-
-Object pop<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span>栈方法<span class="token punctuation">)</span>:　　pop出该双端队列所表示的栈的栈顶元素。相当于removeFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>。
-
-void push<span class="token punctuation">(</span>Object e<span class="token punctuation">)</span><span class="token punctuation">(</span>栈方法<span class="token punctuation">)</span>：　　将一个元素push进该双端队列所表示的栈的栈顶。相当于addFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>。
-
-Object removeFirst<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取并删除该双端队列的第一个元素。
-
-Object removeFirstOccurence<span class="token punctuation">(</span>Object o<span class="token punctuation">)</span>:　　删除该双端队列的第一次出现的元素o。
-
-Object removeLast<span class="token punctuation">(</span><span class="token punctuation">)</span>:　　获取并删除该双端队列的最后一个元素o。
-
-Object removeLastOccurence<span class="token punctuation">(</span>Object o<span class="token punctuation">)</span>:　　删除该双端队列的最后一次出现的元素o。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>利用ArrayDequeue实现栈,输出结果&gt;&gt;&gt;&gt;&gt;安妮de小熊</p>
-<pre class="line-numbers language-bash"><code class="language-bash">ArrayDeque<span class="token operator">&lt;</span>String<span class="token operator">></span> deque <span class="token operator">=</span> new ArrayDeque<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-deque.push<span class="token punctuation">(</span><span class="token string">"熊"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-deque.push<span class="token punctuation">(</span><span class="token string">"小"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-deque.push<span class="token punctuation">(</span><span class="token string">"de"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-deque.push<span class="token punctuation">(</span><span class="token string">"妮"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-deque.push<span class="token punctuation">(</span><span class="token string">"安"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>deque.isEmpty<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
-    System.out.println<span class="token punctuation">(</span>deque.pop<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+final Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> getNode<span class="token punctuation">(</span>int hash, Object key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> tab<span class="token punctuation">;</span> Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> first, e<span class="token punctuation">;</span> int n<span class="token punctuation">;</span> K k<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token variable"><span class="token punctuation">((</span>tab <span class="token operator">=</span> table<span class="token punctuation">)</span> <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>n <span class="token operator">=</span> tab.length<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span>
+        <span class="token punctuation">(</span>first <span class="token operator">=</span> tab[<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> hash]<span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> {
+        if <span class="token punctuation">(</span>first.hash <span class="token operator">==</span> hash <span class="token operator">&amp;&amp;</span> <span class="token operator">/</span><span class="token operator">/</span> always check first node
+            <span class="token punctuation">((</span>k <span class="token operator">=</span> first.key<span class="token punctuation">)</span> <span class="token operator">==</span> key <span class="token operator">||</span> <span class="token punctuation">(</span>key <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> key.equals<span class="token punctuation">(</span>k<span class="token punctuation">))</span></span><span class="token punctuation">))</span>
+            <span class="token keyword">return</span> first<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token variable"><span class="token punctuation">((</span>e <span class="token operator">=</span> first.next<span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> {
+            if <span class="token punctuation">(</span>first instanceof TreeNode<span class="token punctuation">)</span>
+                return <span class="token punctuation">((</span>TreeNode<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span><span class="token punctuation">)</span>first<span class="token punctuation">)</span>.getTreeNode<span class="token punctuation">(</span>hash<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            do {
+                if <span class="token punctuation">(</span>e.hash <span class="token operator">==</span> hash <span class="token operator">&amp;&amp;</span>
+                    <span class="token punctuation">((</span>k <span class="token operator">=</span> e.key<span class="token punctuation">)</span> <span class="token operator">==</span> key <span class="token operator">||</span> <span class="token punctuation">(</span>key <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> key.equals<span class="token punctuation">(</span>k<span class="token punctuation">))</span></span><span class="token punctuation">))</span>
+                    <span class="token keyword">return</span> e<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">((</span>e <span class="token operator">=</span> e.next<span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>hashMap的hash函数的实现</strong><br>在get和put的过程中，计算下标时，先对hashCode进行hash操作，然后再通过hash值进一步计算下标，如下图所示：<br><img src="hashmap2.png" alt><br>代码具体的逻辑为，根据key计算出的hashCode高16位不变，低16位和高16位做一个异或的运算。代码如下</p>
+<pre class="line-numbers language-bash"><code class="language-bash">static final int hash<span class="token punctuation">(</span>Object key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    int h<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>key <span class="token operator">==</span> null<span class="token punctuation">)</span> ? 0 <span class="token keyword">:</span> <span class="token punctuation">(</span>h <span class="token operator">=</span> key.hashCode<span class="token punctuation">(</span><span class="token punctuation">))</span> ^ <span class="token punctuation">(</span>h <span class="token operator">>></span><span class="token operator">></span> 16<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>因为目前的table长度n为2的幂，而计算下标的时候，是这样实现的(使用&amp;位操作，而非%求余)：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">(</span>n - 1<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token function">hash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -737,9 +741,9 @@ deque.push<span class="token punctuation">(</span><span class="token string">"�
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《由浅入深理解java集合框架(一)集合Collection》
+                    《由浅入深理解java集合框架(二)集合HashMap》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-collection/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-hashmap/" property="cc:attributionName"
                rel="cc:attributionURL">
                 蛋糕店
             </a> 采用
@@ -780,7 +784,7 @@ deque.push<span class="token punctuation">(</span><span class="token string">"�
         repo: 'https://github.com/anicake/anicake.github.io',
         owner: 'anicake',
         admin: "godweiyang",
-        id: '2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-collection/',
+        id: '2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-hashmap/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1063,10 +1067,9 @@ deque.push<span class="token punctuation">(</span><span class="token string">"�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-collection/">
                     <div class="card-image">
@@ -1084,9 +1087,9 @@ deque.push<span class="token punctuation">(</span><span class="token string">"�
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-20
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-20
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1099,7 +1102,6 @@ deque.push<span class="token punctuation">(</span><span class="token string">"�
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1118,13 +1120,13 @@ deque.push<span class="token punctuation">(</span><span class="token string">"�
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-hashmap/">
+                <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-san-ji-he-linkedhashmap-treemap/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="由浅入深理解java集合框架(二)集合HashMap">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="由浅入深理解java集合框架(三)集合LinkedHashMap、TreeMap">
                         
-                        <span class="card-title">由浅入深理解java集合框架(二)集合HashMap</span>
+                        <span class="card-title">由浅入深理解java集合框架(三)集合LinkedHashMap、TreeMap</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
