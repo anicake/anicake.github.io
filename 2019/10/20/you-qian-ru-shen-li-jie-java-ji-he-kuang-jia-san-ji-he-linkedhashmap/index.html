@@ -4,14 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="由浅入深理解java集合框架(三)集合LinkedHashMap、TreeMap, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
+    <meta name="keywords" content="由浅入深理解java集合框架(三)集合LinkedHashMap, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
     <meta name="description" content="Map简介
 map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap
 java Map实现之LinkedHashMap
-我们">
+Li">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@ java Map实现之LinkedHashMap
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>由浅入深理解java集合框架(三)集合LinkedHashMap、TreeMap | 蛋糕店的博客</title>
+    <title>由浅入深理解java集合框架(三)集合LinkedHashMap | 蛋糕店的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -293,13 +293,13 @@ java Map实现之LinkedHashMap
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        由浅入深理解java集合框架(三)集合LinkedHashMap、TreeMap
+                        由浅入深理解java集合框架(三)集合LinkedHashMap
                     </div>
                 </div>
             </div>
@@ -448,14 +448,14 @@ java Map实现之LinkedHashMap
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    147
+                    954
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
                 
@@ -474,7 +474,102 @@ java Map实现之LinkedHashMap
                 <h1 id="Map简介"><a href="#Map简介" class="headerlink" title="Map简介"></a>Map简介</h1><hr>
 <p>map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap</p>
 <h1 id="java-Map实现之LinkedHashMap"><a href="#java-Map实现之LinkedHashMap" class="headerlink" title="java Map实现之LinkedHashMap"></a>java Map实现之LinkedHashMap</h1><hr>
-<p>我们知道HashMap在put元素时是无序的，元素的位置是根据元素的key计算出来的。当我们的业务需要map具有按插入顺序排序能力的时候，LinkedHashMap是具备这样按插入顺序排序的能力的，LinkedHashMap继承了HashMap重写了HashMap中的部分方法。Lin</p>
+<h2 id="LinkedHashMap简介"><a href="#LinkedHashMap简介" class="headerlink" title="LinkedHashMap简介"></a>LinkedHashMap简介</h2><hr>
+<p>在了解了<a href="https://anicake.github.io/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-hashmap" target="_blank" rel="noopener">HashMap</a>我们知道HashMap在put元素时是无序的，元素的位置是根据元素的key计算出来的。当我们的业务需要map具有按插入顺序排序能力的时候，LinkedHashMap是具备这样按插入顺序排序的能力的底层是双向列表和数组的数据结构，LinkedHashMap继承了HashMap重写了HashMap中的部分方法。简单写一个程序</p>
+<pre class="line-numbers language-bash"><code class="language-bash">Map<span class="token operator">&lt;</span>String,Integer<span class="token operator">></span> map <span class="token operator">=</span> new LinkedHashMap<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"语文"</span>, 1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"数学"</span>, 2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"英语"</span>, 3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"历史"</span>, 4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"政治"</span>, 5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"地理"</span>, 6<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"生物"</span>, 7<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map.put<span class="token punctuation">(</span><span class="token string">"化学"</span>, 8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>Map.Entry<span class="token operator">&lt;</span>String,Integer<span class="token operator">></span> entry <span class="token keyword">:</span> map.entrySet<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
+    System.out.println<span class="token punctuation">(</span>entry.getKey<span class="token punctuation">(</span><span class="token punctuation">)</span> + <span class="token string">"-->"</span>+entry.getValue<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出结果：<br>语文–&gt;1<br>数学–&gt;2<br>英语–&gt;3<br>历史–&gt;4<br>政治–&gt;5<br>地理–&gt;6<br>生物–&gt;7<br>化学–&gt;8</p>
+<h2 id="LinkedHashMap中的重要实现"><a href="#LinkedHashMap中的重要实现" class="headerlink" title="LinkedHashMap中的重要实现"></a>LinkedHashMap中的重要实现</h2><hr>
+<p>HashMap中定义了3个方法：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">// Callbacks to allow LinkedHashMap post-actions
+    void afterNodeAccess<span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+    void afterNodeInsertion<span class="token punctuation">(</span>boolean evict<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+    void afterNodeRemoval<span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>put操作</strong><br>LinkedHashMap没有覆盖HashMap的put方法，所以put操作跟HashMap是一样的。但是它覆盖了newNode方法，也就是说构造新节点的时候，LinkedHashMap跟HashMap是不一样的：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> newNode<span class="token punctuation">(</span>int hash, K key, V value, Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    // 使用Entry双向链表构造节点，而不是HashMap的Node单向链表
+    LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p <span class="token operator">=</span>
+        new LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span><span class="token punctuation">(</span>hash, key, value, e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    linkNodeLast<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span> // 更新双向链表，这一操作在HashMap里面是没有的
+    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>当put的元素在map中的key已存在时会调用afterNodeAccess方法:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">void afterNodeAccess<span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> // move node to last
+    LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span> last<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>accessOrder <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>last <span class="token operator">=</span> tail<span class="token punctuation">)</span> <span class="token operator">!=</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> // 使用访问顺序，把节点移动到双向链表的最后面，如果已经在最后面了，不需要进行移动
+        LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p <span class="token operator">=</span>
+            <span class="token punctuation">(</span>LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span><span class="token punctuation">)</span>e, b <span class="token operator">=</span> p.before, a <span class="token operator">=</span> p.after<span class="token punctuation">;</span>
+        p.after <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>b <span class="token operator">==</span> null<span class="token punctuation">)</span> // 特殊情况，处理头节点
+            <span class="token function">head</span> <span class="token operator">=</span> a<span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            b.after <span class="token operator">=</span> a<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">!=</span> null<span class="token punctuation">)</span> //处理节点
+            a.before <span class="token operator">=</span> b<span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            last <span class="token operator">=</span> b<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>last <span class="token operator">==</span> null<span class="token punctuation">)</span> //// 特殊情况，处理尾节点
+            <span class="token function">head</span> <span class="token operator">=</span> p<span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            p.before <span class="token operator">=</span> last<span class="token punctuation">;</span>
+            last.after <span class="token operator">=</span> p<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">tail</span> <span class="token operator">=</span> p<span class="token punctuation">;</span>
+        ++modCount<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果key不存在则会调用afterNodeInsertion方法:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">void afterNodeInsertion<span class="token punctuation">(</span>boolean evict<span class="token punctuation">)</span> <span class="token punctuation">{</span> // possibly remove eldest
+    LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span> first<span class="token punctuation">;</span>
+    //removeEldestEntry方法LinkedHashMap永远返回false,如果需要自定义需覆盖这个方法
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>evict <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>first <span class="token operator">=</span> head<span class="token punctuation">)</span> <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> removeEldestEntry<span class="token punctuation">(</span>first<span class="token punctuation">))</span> <span class="token punctuation">{</span>
+        K key <span class="token operator">=</span> first.key<span class="token punctuation">;</span>
+        removeNode<span class="token punctuation">(</span>hash<span class="token punctuation">(</span>key<span class="token punctuation">)</span>, key, null, false, true<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>get操作</strong><br>LinkedHashMap中重写了HashMap中的get方法：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">public V get<span class="token punctuation">(</span>Object key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> e<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token variable"><span class="token punctuation">((</span>e <span class="token operator">=</span> getNode<span class="token punctuation">(</span>hash<span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token punctuation">))</span></span> <span class="token operator">==</span> null<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    //如果使用访问顺序则需要执行afterNodeAccess
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>accessOrder<span class="token punctuation">)</span>
+        afterNodeAccess<span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> e.value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>remove操作</strong><br>LinkedHashMap的remove方法没有复写HashMap的remove方法，但是同样实现了afterNodeRemoval这个钩子方法：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">// 更新双向链表
+void afterNodeRemoval<span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> // unlink
+    LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p <span class="token operator">=</span>
+        <span class="token punctuation">(</span>LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span><span class="token punctuation">)</span>e, b <span class="token operator">=</span> p.before, a <span class="token operator">=</span> p.after<span class="token punctuation">;</span>
+    p.before <span class="token operator">=</span> p.after <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>b <span class="token operator">==</span> null<span class="token punctuation">)</span>
+        <span class="token function">head</span> <span class="token operator">=</span> a<span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        b.after <span class="token operator">=</span> a<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">==</span> null<span class="token punctuation">)</span>
+        <span class="token function">tail</span> <span class="token operator">=</span> b<span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        a.before <span class="token operator">=</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>accessOrder属性分析</strong><br>LinkedHashMap的accessOrder属性默认情况下为false就时按照插入的顺序排序，如果accessOrder属性设置为true则按照访问的顺序，那么afterNodeAccess这个钩子方法内部的逻辑会被执行，LinkedHashMap会在被访问之后修改双向链表的结构。<br>afterNodeAccess在使用get方法或者put方法遇到关键字已经存在的情况下，会被触发。<br><strong>注意事项</strong><br>如果accessOrder设置为true那么使用下面的方法遍历会报错</p>
+<pre class="line-numbers language-bash"><code class="language-bash">for<span class="token punctuation">(</span>String str <span class="token keyword">:</span> map.keySet<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
+    System.out.println<span class="token punctuation">(</span>map.get<span class="token punctuation">(</span>str<span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="linkedhashmap1.png" alt><br>需要按照这种方法遍历</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token punctuation">(</span>Map.Entry<span class="token operator">&lt;</span>String,Integer<span class="token operator">></span> entry <span class="token keyword">:</span> map.entrySet<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
+    System.out.println<span class="token punctuation">(</span>entry.getKey<span class="token punctuation">(</span><span class="token punctuation">)</span> + <span class="token string">"-->"</span>+entry.getValue<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -633,9 +728,9 @@ java Map实现之LinkedHashMap
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《由浅入深理解java集合框架(三)集合LinkedHashMap、TreeMap》
+                    《由浅入深理解java集合框架(三)集合LinkedHashMap》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-san-ji-he-linkedhashmap-treemap/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-san-ji-he-linkedhashmap/" property="cc:attributionName"
                rel="cc:attributionURL">
                 蛋糕店
             </a> 采用
@@ -676,7 +771,7 @@ java Map实现之LinkedHashMap
         repo: 'https://github.com/anicake/anicake.github.io',
         owner: 'anicake',
         admin: "godweiyang",
-        id: '2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-san-ji-he-linkedhashmap-treemap/',
+        id: '2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-san-ji-he-linkedhashmap/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -967,7 +1062,7 @@ java Map实现之LinkedHashMap
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="由浅入深理解java集合框架(二)集合HashMap">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="由浅入深理解java集合框架(二)集合HashMap">
                         
                         <span class="card-title">由浅入深理解java集合框架(二)集合HashMap</span>
                     </div>
@@ -1016,7 +1111,7 @@ java Map实现之LinkedHashMap
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="第一篇博客">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="第一篇博客">
                         
                         <span class="card-title">第一篇博客</span>
                     </div>
@@ -1203,7 +1298,7 @@ java Map实现之LinkedHashMap
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">3.2k</span>
+            <span class="white-color">4k</span>
             
 
             <br>
