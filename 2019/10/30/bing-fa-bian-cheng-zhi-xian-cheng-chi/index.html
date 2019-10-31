@@ -4,14 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="由浅入深理解java集合框架(二)集合HashMap, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
+    <meta name="keywords" content="java�������֮�̳߳ص�ʹ��, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="Map简介
-map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap
-java Map实现之HashMap
-java中Has">
+    <meta name="description" content="ǰ��
+�ڹ������������е�ҵ����Ҫ�첽����ʱ�����´���һ���߳�ȥ���������������ܼ�㣬���ǲ��������ʱ�����ǻᴴ���������̣߳������߳�ִ�е�ʱ��ܶ̾ͽ����">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +17,7 @@ java中Has">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>由浅入深理解java集合框架(二)集合HashMap | 蛋糕店的博客</title>
+    <title>java�������֮�̳߳ص�ʹ�� | 蛋糕店的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -293,13 +291,13 @@ java中Has">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        由浅入深理解java集合框架(二)集合HashMap
+                        java�������֮�̳߳ص�ʹ��
                     </div>
                 </div>
             </div>
@@ -410,8 +408,16 @@ java中Has">
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/集合框架/" target="_blank">
-                            <span class="chip bg-color">集合框架</span>
+                        <a href="/tags/���߳�/" target="_blank">
+                            <span class="chip bg-color">���߳�</span>
+                        </a>
+                        
+                        <a href="/tags/�������/" target="_blank">
+                            <span class="chip bg-color">�������</span>
+                        </a>
+                        
+                        <a href="/tags/�̳߳�/" target="_blank">
+                            <span class="chip bg-color">�̳߳�</span>
                         </a>
                         
                     </div>
@@ -422,8 +428,8 @@ java中Has">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Map/" class="post-category" target="_blank">
-                            Map
+                        <a href="/categories/HashMap/" class="post-category" target="_blank">
+                            HashMap
                         </a>
                         
                     </div>
@@ -434,7 +440,7 @@ java中Has">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-10-20
+                    2019-10-30
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -448,14 +454,14 @@ java中Has">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    86
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    1 分
                 </div>
                 
                 
@@ -471,118 +477,61 @@ java中Has">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Map简介"><a href="#Map简介" class="headerlink" title="Map简介"></a>Map简介</h1><hr>
-<p>map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap</p>
-<h1 id="java-Map实现之HashMap"><a href="#java-Map实现之HashMap" class="headerlink" title="java Map实现之HashMap"></a>java Map实现之HashMap</h1><hr>
-<p>java中HashMap是我们日常开发中最常使用的map，HashMap（ jdk1.8以后）底层是基于数组（hash散列）+ 链表 + 红黑树来实现的。 HashMap的优势是可以很快的根据键（key）找到对应的值（value）,HashMap存储的时候是无序的,通过put进来的元素key的hashCode计算该元素在数组上的索引，把元素放到上面去，用链表和红黑树来解决hash碰撞的问题。</p>
-<h2 id="HashMap-put函数的实现"><a href="#HashMap-put函数的实现" class="headerlink" title="HashMap put函数的实现"></a>HashMap put函数的实现</h2><hr>
-<p>下面是我们hashMap中put元素时的操作：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">HashMap<span class="token operator">&lt;</span>String,Integer<span class="token operator">></span> map <span class="token operator">=</span> new HashMap<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"语文"</span>, 1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"数学"</span>, 2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"英语"</span>, 3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"历史"</span>, 4<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"政治"</span>, 5<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"地理"</span>, 6<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"生物"</span>, 7<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"化学"</span>, 8<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span>Map.Entry<span class="token operator">&lt;</span>String,Integer<span class="token operator">></span> entry <span class="token keyword">:</span> map.entrySet<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
-         System.out.println<span class="token punctuation">(</span>entry.getKey<span class="token punctuation">(</span><span class="token punctuation">)</span> + <span class="token string">"-->"</span>+entry.getValue<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+                <h1 id="j��"><a href="#j��" class="headerlink" title="ǰ��"></a>ǰ��</h1><hr>
+<p>�ڹ������������е�ҵ����Ҫ�첽����ʱ�����´���һ���߳�ȥ���������������ܼ�㣬���ǲ��������ʱ�����ǻᴴ���������̣߳������߳�ִ�е�ʱ��ܶ̾ͽ����ˣ�����Ƶ���Ĵ����������̣߳����Ľ�����ϵͳ��Ч�ʣ������̵߳�������Ҳ���ߡ�<br>���Ǿ���Ҫ�������������߳̿��Ը��ã�����߳�ִ�������񣬿��Լ���ִ�б�����񣬶�����ֱ�����١���ʱ�����ǿ���ʹ��java�ṩ���̳߳����ﵽ���ǵ�����</p>
+<h2 id="Java�е�ThreadPoolExecutor��"><a href="#Java�е�ThreadPoolExecutor��" class="headerlink" title="Java�е�ThreadPoolExecutor��"></a>Java�е�ThreadPoolExecutor��</h2><hr>
+<p>ThreadPoolExecutor����jdk�Դ��Ĵ����̳߳غ��ĵ��࣬�����Ҫ�����̳߳ر����������࣬��������һ������������Դ�룺<br>ThreadPoolExecutor���ĸ����췽��</p>
+<pre class="line-numbers language-bash"><code class="language-bash">public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<span class="token operator">&lt;</span>Runnable<span class="token operator">></span> workQueue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行结果：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">政治--<span class="token operator">></span>5
-生物--<span class="token operator">></span>7
-历史--<span class="token operator">></span>4
-数学--<span class="token operator">></span>2
-化学--<span class="token operator">></span>8
-语文--<span class="token operator">></span>1
-英语--<span class="token operator">></span>3
-地理--<span class="token operator">></span>6<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>看一下hashMap内部的数组元素的分布情况：<br><img src="hashmap1.png" alt><br>上图可以清楚的显示出hashMap添加新元素时的bucket位置不是按照添加顺序的，而是通过计算，hash碰撞时会在当前bucket位置产生一个链表存储。<br><strong>1、HashMap中几个比较重要的成员变量和参数</strong></p>
-<ul>
-<li><strong>initialCapacity（参数）</strong>:initialCapacity初始化map的buckets的数量，默认的情况下是16个。</li>
-<li><strong>loadFactor</strong>:loadFactor负载因子默认为0.75f,reSize的条件当前的hashMap的元素的个数大于loadFactor*capacity会将原来的map扩容至原来的2倍。</li>
-<li><strong>table</strong>:用来装hashMap中的元素。</li>
-<li><strong>size</strong>:当前hashMap所有元素的个数。</li>
-</ul>
-<p><strong>2、put函数的大致流程:</strong><br>1、根据key的hashCode()做hash计算如果没发生碰撞直接将元素插入到计算的bucket上<br>2、如果发生了碰撞和判断当前位置的key做equals如果相等则更新该节点的值<br>3、如果发生碰撞但是key并不相等则在该节点需要以链表的形式存储<br>4、当链表的长度大于等于8(TREEIFY_THRESHOLD)链表转为红黑树<br>5、判断当前hashMap的元素个数是否大于（loadFactor*capacity），如果大于进行reSize<br>代码如下：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">final V putVal<span class="token punctuation">(</span>int hash, K key, V value, boolean onlyIfAbsent,
-                   boolean evict<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> tab<span class="token punctuation">;</span> Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p<span class="token punctuation">;</span> int n, i<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token variable"><span class="token punctuation">((</span>tab <span class="token operator">=</span> table<span class="token punctuation">)</span> <span class="token operator">==</span> null <span class="token operator">||</span> <span class="token punctuation">(</span>n <span class="token operator">=</span> tab.length<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> tab为空则创建
-        n <span class="token operator">=</span> <span class="token punctuation">(</span>tab <span class="token operator">=</span> resize<span class="token punctuation">(</span><span class="token punctuation">))</span></span>.length<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token variable"><span class="token punctuation">((</span>p <span class="token operator">=</span> tab[i <span class="token operator">=</span> <span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> hash]<span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> 计算index，并对null做处理
-        tab[i] <span class="token operator">=</span> newNode<span class="token punctuation">(</span>hash<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    else {
-        Node<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span> e<span class="token punctuation">;</span> K k<span class="token punctuation">;</span>
-        if <span class="token punctuation">(</span>p.hash <span class="token operator">==</span> hash <span class="token operator">&amp;&amp;</span>
-            <span class="token punctuation">((</span>k <span class="token operator">=</span> p.key<span class="token punctuation">)</span> <span class="token operator">==</span> key <span class="token operator">||</span> <span class="token punctuation">(</span>key <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> key.equals<span class="token punctuation">(</span>k<span class="token punctuation">))</span></span><span class="token punctuation">))</span> //判断节点是否存在相同的key
-            e <span class="token operator">=</span> p<span class="token punctuation">;</span>
-        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>p instanceof TreeNode<span class="token punctuation">)</span> // 该链为树
-            e <span class="token operator">=</span> <span class="token variable"><span class="token punctuation">((</span>TreeNode<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span><span class="token punctuation">)</span>p<span class="token punctuation">)</span>.putTreeVal<span class="token punctuation">(</span>this<span class="token punctuation">,</span> tab<span class="token punctuation">,</span> hash<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        else {
-            for <span class="token punctuation">(</span>int binCount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">;</span> <span class="token operator">++</span>binCount<span class="token punctuation">)</span> {
-                if <span class="token punctuation">((</span>e <span class="token operator">=</span> p.next<span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> {
-                    p.next <span class="token operator">=</span> newNode<span class="token punctuation">(</span>hash<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    if <span class="token punctuation">(</span>binCount <span class="token operator">>=</span> TREEIFY_THRESHOLD <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> <span class="token operator">-</span><span class="token number">1</span> for 1st <span class="token operator">/</span><span class="token operator">/</span>链转数
-                        treeifyBin<span class="token punctuation">(</span>tab<span class="token punctuation">,</span> hash<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    break<span class="token punctuation">;</span>
-                }
-                if <span class="token punctuation">(</span>e.hash <span class="token operator">==</span> hash <span class="token operator">&amp;&amp;</span>
-                    <span class="token punctuation">((</span>k <span class="token operator">=</span> e.key<span class="token punctuation">)</span> <span class="token operator">==</span> key <span class="token operator">||</span> <span class="token punctuation">(</span>key <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> key.equals<span class="token punctuation">(</span>k<span class="token punctuation">))</span></span><span class="token punctuation">))</span>
-                    <span class="token keyword">break</span><span class="token punctuation">;</span>
-                p <span class="token operator">=</span> e<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        //节点存在相同的节点，值替换
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span> // existing mapping <span class="token keyword">for</span> key
-            V oldValue <span class="token operator">=</span> e.value<span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>onlyIfAbsent <span class="token operator">||</span> oldValue <span class="token operator">==</span> null<span class="token punctuation">)</span>
-                e.value <span class="token operator">=</span> value<span class="token punctuation">;</span>
-            afterNodeAccess<span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> oldValue<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<span class="token operator">&lt;</span>Runnable<span class="token operator">></span> workQueue,
+        ThreadFactory threadFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+    <span class="token punctuation">}</span>    
+public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<span class="token operator">&lt;</span>Runnable<span class="token operator">></span> workQueue,
+        RejectedExecutionHandler handler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
     <span class="token punctuation">}</span>
-    ++modCount<span class="token punctuation">;</span>
-    //进行reSize操作
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>++size <span class="token operator">></span> threshold<span class="token punctuation">)</span>
-        resize<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    afterNodeInsertion<span class="token punctuation">(</span>evict<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>hashMap的get实现</strong><br>如果理解了put操作get实现就很容易理解了，根据用户传来的key通过hash计算找到对应的索引位置，然后通过equals判断查找对应的key，若为链表查找时间复杂度为O(n)，若为数则时间复杂度为O(logn)。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">public V get<span class="token punctuation">(</span>Object key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> e<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>e <span class="token operator">=</span> getNode<span class="token punctuation">(</span>hash<span class="token punctuation">(</span>key<span class="token punctuation">)</span>, key<span class="token punctuation">))</span> <span class="token operator">==</span> null ? null <span class="token keyword">:</span> e.value<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+ public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<span class="token operator">&lt;</span>Runnable<span class="token operator">></span> workQueue,
+            ThreadFactory threadFactory,RejectedExecutionHandler handler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+    <span class="token punctuation">}</span>
 
-final Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> getNode<span class="token punctuation">(</span>int hash, Object key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> tab<span class="token punctuation">;</span> Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> first, e<span class="token punctuation">;</span> int n<span class="token punctuation">;</span> K k<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token variable"><span class="token punctuation">((</span>tab <span class="token operator">=</span> table<span class="token punctuation">)</span> <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>n <span class="token operator">=</span> tab.length<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span>
-        <span class="token punctuation">(</span>first <span class="token operator">=</span> tab[<span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> hash]<span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> {
-        if <span class="token punctuation">(</span>first.hash <span class="token operator">==</span> hash <span class="token operator">&amp;&amp;</span> <span class="token operator">/</span><span class="token operator">/</span> always check first node
-            <span class="token punctuation">((</span>k <span class="token operator">=</span> first.key<span class="token punctuation">)</span> <span class="token operator">==</span> key <span class="token operator">||</span> <span class="token punctuation">(</span>key <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> key.equals<span class="token punctuation">(</span>k<span class="token punctuation">))</span></span><span class="token punctuation">))</span>
-            <span class="token keyword">return</span> first<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token variable"><span class="token punctuation">((</span>e <span class="token operator">=</span> first.next<span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> {
-            if <span class="token punctuation">(</span>first instanceof TreeNode<span class="token punctuation">)</span>
-                return <span class="token punctuation">((</span>TreeNode<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span><span class="token punctuation">)</span>first<span class="token punctuation">)</span>.getTreeNode<span class="token punctuation">(</span>hash<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            do {
-                if <span class="token punctuation">(</span>e.hash <span class="token operator">==</span> hash <span class="token operator">&amp;&amp;</span>
-                    <span class="token punctuation">((</span>k <span class="token operator">=</span> e.key<span class="token punctuation">)</span> <span class="token operator">==</span> key <span class="token operator">||</span> <span class="token punctuation">(</span>key <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> key.equals<span class="token punctuation">(</span>k<span class="token punctuation">))</span></span><span class="token punctuation">))</span>
-                    <span class="token keyword">return</span> e<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">((</span>e <span class="token operator">=</span> e.next<span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>hashMap的hash函数的实现</strong><br>在get和put的过程中，计算下标时，先对hashCode进行hash操作，然后再通过hash值进一步计算下标，如下图所示：<br><img src="hashmap2.png" alt><br>代码具体的逻辑为，根据key计算出的hashCode高16位不变，低16位和高16位做一个异或的运算。代码如下</p>
-<pre class="line-numbers language-bash"><code class="language-bash">static final int hash<span class="token punctuation">(</span>Object key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    int h<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>key <span class="token operator">==</span> null<span class="token punctuation">)</span> ? 0 <span class="token keyword">:</span> <span class="token punctuation">(</span>h <span class="token operator">=</span> key.hashCode<span class="token punctuation">(</span><span class="token punctuation">))</span> ^ <span class="token punctuation">(</span>h <span class="token operator">>></span><span class="token operator">></span> 16<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>因为目前的table长度n为2的幂，而计算下标的时候，是这样实现的(使用&amp;位操作，而非%求余)：</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">(</span>n - 1<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token function">hash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -741,9 +690,9 @@ final Node<span class="token operator">&lt;</span>K,V<span class="token operator
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《由浅入深理解java集合框架(二)集合HashMap》
+                    《java�������֮�̳߳ص�ʹ��》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-map/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/30/bing-fa-bian-cheng-zhi-xian-cheng-chi/" property="cc:attributionName"
                rel="cc:attributionURL">
                 蛋糕店
             </a> 采用
@@ -784,7 +733,7 @@ final Node<span class="token operator">&lt;</span>K,V<span class="token operator
         repo: 'https://github.com/anicake/anicake.github.io',
         owner: 'anicake',
         admin: "godweiyang",
-        id: '2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-map/',
+        id: '2019/10/30/bing-fa-bian-cheng-zhi-xian-cheng-chi/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1067,46 +1016,56 @@ final Node<span class="token operator">&lt;</span>K,V<span class="token operator
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-collection/">
+                <a href="/2019/10/30/bing-fa-bian-cheng-zhi-xian-cheng-chi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="由浅入深理解java集合框架(一)集合Collection">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="java�������֮�̳߳ص�ʹ��">
                         
-                        <span class="card-title">由浅入深理解java集合框架(一)集合Collection</span>
+                        <span class="card-title">java�������֮�̳߳ص�ʹ��</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要对java集合的框架进行介绍，使大家对java集合的整体框架有个了解。具体介绍了Collection接口以及Collection接口的三个子接口Set，List，Queue。
+                            java�̳߳��������ճ������бȽ���Ҫ�ļ�������Ϊ�������Ͻ��ױ���Ҫ���յļ�����
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/集合/" class="post-category" target="_blank">
-                                    集合
+                            <a href="/categories/HashMap/" class="post-category" target="_blank">
+                                    HashMap
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/集合框架/" target="_blank">
-                        <span class="chip bg-color">集合框架</span>
+                    <a href="/tags/���߳�/" target="_blank">
+                        <span class="chip bg-color">���߳�</span>
+                    </a>
+                    
+                    <a href="/tags/�������/" target="_blank">
+                        <span class="chip bg-color">�������</span>
+                    </a>
+                    
+                    <a href="/tags/�̳߳�/" target="_blank">
+                        <span class="chip bg-color">�̳߳�</span>
                     </a>
                     
                 </div>
@@ -1120,32 +1079,31 @@ final Node<span class="token operator">&lt;</span>K,V<span class="token operator
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/14/di-yi-pian-bo-ke/">
+                <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-collection/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="第一篇博客">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="由浅入深理解java集合框架(一)集合Collection">
                         
-                        <span class="card-title">第一篇博客</span>
+                        <span class="card-title">由浅入深理解java集合框架(一)集合Collection</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            hello world ！！！！！！！！！！！！开启我的博客之旅。。
-
+                            本篇文章主要对java集合的框架进行介绍，使大家对java集合的整体框架有个了解。具体介绍了Collection接口以及Collection接口的三个子接口Set，List，Queue。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-14
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                    随笔
+                            <a href="/categories/Collection/" class="post-category" target="_blank">
+                                    Collection
                                 </a>
                             
                             
@@ -1155,8 +1113,16 @@ final Node<span class="token operator">&lt;</span>K,V<span class="token operator
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/随笔/" target="_blank">
-                        <span class="chip bg-color">随笔</span>
+                    <a href="/tags/集合框架/" target="_blank">
+                        <span class="chip bg-color">集合框架</span>
+                    </a>
+                    
+                    <a href="/tags/java基础/" target="_blank">
+                        <span class="chip bg-color">java基础</span>
+                    </a>
+                    
+                    <a href="/tags/集合/" target="_blank">
+                        <span class="chip bg-color">集合</span>
                     </a>
                     
                 </div>
@@ -1311,7 +1277,7 @@ final Node<span class="token operator">&lt;</span>K,V<span class="token operator
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">3k</span>
+            <span class="white-color">4k</span>
             
 
             <br>
