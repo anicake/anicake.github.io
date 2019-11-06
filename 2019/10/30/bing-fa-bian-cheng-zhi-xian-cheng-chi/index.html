@@ -4,12 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="java�������֮�̳߳ص�ʹ��, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
+    <meta name="keywords" content="java并发编程之线程池的使用, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="ǰ��
-�ڹ������������е�ҵ����Ҫ�첽����ʱ�����´���һ���߳�ȥ���������������ܼ�㣬���ǲ��������ʱ�����ǻᴴ���������̣߳������߳�ִ�е�ʱ��ܶ̾ͽ����">
+    <meta name="description" content="前言
+在工作中我们在有的业务需要异步处理时可以新创建一个线程去处理，这样看起来很简便，但是并发量大的时候，我们会创建大量的线程，并且线程执行的时间很短就结束了，这样频繁的创建和销毁线程，大大的降低了系统的效率，并且线程的利用率也不高。我们就">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>java�������֮�̳߳ص�ʹ�� | 蛋糕店的博客</title>
+    <title>java并发编程之线程池的使用 | 蛋糕店的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -291,13 +291,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/27.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        java�������֮�̳߳ص�ʹ��
+                        java并发编程之线程池的使用
                     </div>
                 </div>
             </div>
@@ -408,16 +408,16 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/���߳�/" target="_blank">
-                            <span class="chip bg-color">���߳�</span>
+                        <a href="/tags/多线程/" target="_blank">
+                            <span class="chip bg-color">多线程</span>
                         </a>
                         
-                        <a href="/tags/�������/" target="_blank">
-                            <span class="chip bg-color">�������</span>
+                        <a href="/tags/并发编程/" target="_blank">
+                            <span class="chip bg-color">并发编程</span>
                         </a>
                         
-                        <a href="/tags/�̳߳�/" target="_blank">
-                            <span class="chip bg-color">�̳߳�</span>
+                        <a href="/tags/线程池/" target="_blank">
+                            <span class="chip bg-color">线程池</span>
                         </a>
                         
                     </div>
@@ -428,8 +428,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/HashMap/" class="post-category" target="_blank">
-                            HashMap
+                        <a href="/categories/线程池/" class="post-category" target="_blank">
+                            线程池
                         </a>
                         
                     </div>
@@ -454,14 +454,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    86
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
                 
@@ -477,10 +477,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="j��"><a href="#j��" class="headerlink" title="ǰ��"></a>ǰ��</h1><hr>
-<p>�ڹ������������е�ҵ����Ҫ�첽����ʱ�����´���һ���߳�ȥ���������������ܼ�㣬���ǲ��������ʱ�����ǻᴴ���������̣߳������߳�ִ�е�ʱ��ܶ̾ͽ����ˣ�����Ƶ���Ĵ����������̣߳����Ľ�����ϵͳ��Ч�ʣ������̵߳�������Ҳ���ߡ�<br>���Ǿ���Ҫ�������������߳̿��Ը��ã�����߳�ִ�������񣬿��Լ���ִ�б�����񣬶�����ֱ�����١���ʱ�����ǿ���ʹ��java�ṩ���̳߳����ﵽ���ǵ�����</p>
-<h2 id="Java�е�ThreadPoolExecutor��"><a href="#Java�е�ThreadPoolExecutor��" class="headerlink" title="Java�е�ThreadPoolExecutor��"></a>Java�е�ThreadPoolExecutor��</h2><hr>
-<p>ThreadPoolExecutor����jdk�Դ��Ĵ����̳߳غ��ĵ��࣬�����Ҫ�����̳߳ر����������࣬��������һ������������Դ�룺<br>ThreadPoolExecutor���ĸ����췽��</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><hr>
+<p>在工作中我们在有的业务需要异步处理时可以新创建一个线程去处理，这样看起来很简便，但是并发量大的时候，我们会创建大量的线程，并且线程执行的时间很短就结束了，这样频繁的创建和销毁线程，大大的降低了系统的效率，并且线程的利用率也不高。<br>我们就需要解决这个问题让线程可以复用，这个线程执行完任务，可以继续执行别的任务，而不是直接销毁。这时候我们可以使用java提供的线程池来达到我们的需求。</p>
+<h2 id="Java中的ThreadPoolExecutor类"><a href="#Java中的ThreadPoolExecutor类" class="headerlink" title="Java中的ThreadPoolExecutor类"></a>Java中的ThreadPoolExecutor类</h2><hr>
+<p>ThreadPoolExecutor类是jdk自带的创建线程池核心的类，如果想要创建线程池必须理解这个类，下面我们一起来看这个类的源码：<br>ThreadPoolExecutor有四个构造方法</p>
 <pre class="line-numbers language-bash"><code class="language-bash">public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<span class="token operator">&lt;</span>Runnable<span class="token operator">></span> workQueue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
     <span class="token punctuation">}</span>
@@ -495,43 +495,44 @@ public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSiz
  public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<span class="token operator">&lt;</span>Runnable<span class="token operator">></span> workQueue,
             ThreadFactory threadFactory,RejectedExecutionHandler handler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
-    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>构造方法参数</strong></p>
+<ul>
+<li><strong>1、corePoolSize</strong>：核心线程数。线程池在创建的时候默认不会创建线程，当有任务添加进来时就会创建新的线程，当线程数量达到corePoolSize的时候，新加的任务会被添加到BlockingQueue（阻塞队列）中去；</li>
+<li><strong>2、maximumPoolSize</strong>：线程池最大线程数，这个参数也是一个非常重要的参数，它表示在线程池中最多能创建多少个线程；</li>
+<li><strong>3、keepAliveTime</strong>：空闲线程保持活性的时间；默认情况下keepAliveTime只有当线程池中的线程数大于corePoolSize时才会起作用，直到线程中的线程数量小于corePoolSize，如果需要小于corePoolSize时也让keepAliveTime有起作用需要调用allowCoreThreadTimeOut(boolean)方法</li>
+<li><strong>4、unit</strong>：keepAliveTime时间单位；<pre class="line-numbers language-bash"><code class="language-bash">TimeUnit.DAYS<span class="token punctuation">;</span>               //天
+TimeUnit.HOURS<span class="token punctuation">;</span>             //小时
+TimeUnit.MINUTES<span class="token punctuation">;</span>           //分钟
+TimeUnit.SECONDS<span class="token punctuation">;</span>           //秒
+TimeUnit.MILLISECONDS<span class="token punctuation">;</span>      //毫秒
+TimeUnit.MICROSECONDS<span class="token punctuation">;</span>      //微妙
+TimeUnit.NANOSECONDS<span class="token punctuation">;</span>       //纳秒<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+_ <strong>5、workQueue</strong>:一个阻塞队列，线程池创建的线程的数量大于corePoolSize时需要将后面加入的任务放入阻塞队列，这个参数的选择也很重要，对创建什么样线程池有很大的影响。一般有以下几种选择；<br>ArrayBlockingQueue;是一个有界阻塞队列，此队列按先进先出的（FIFO）顺序。<br>LinkedBlockingQueue;默认是一个无界阻塞队列可以指定大小，此队列也是按照先进先出的顺序。吞吐量大于ArrayBlockingQueue。<br>SynchronousQueue; 没有容量，是无缓冲等待队列，是一个不存储元素的阻塞队列，会直接将任务交给消费者，必须等队列中的添加元素被消费后才能继续添加新的元素。<br>PriorityBlockingQueue;一个具有优先级的无限阻塞队列。</li>
+<li><strong>6、threadFactory</strong>：创建线程的线程工厂；</li>
+<li><strong>7、handler</strong>：当线程池饱和的时候拒绝策略。线程池默认提供了四种拒绝策略：<br>AbortPolicy：直接抛出RejectedExecutionException异常。（线程池默认使用的策略）<br>DiscardPolicy：什么都不处理，直接将任务丢弃。<br>DiscardOldestPolicy：丢弃阻塞队列最前面的任务，执行这个任务。<br>CallerRunsPolicy：使用调用者的线程执行当前任务。<br>可以自定义自己的拒绝策略只要实现RejectedExecutionHandler这个类就可以</li>
+</ul>
+<p><strong>几个重要的字段</strong></p>
+<pre class="line-numbers language-bash"><code class="language-bash">private final AtomicInteger ctl <span class="token operator">=</span> new AtomicInteger<span class="token punctuation">(</span>ctlOf<span class="token punctuation">(</span>RUNNING, 0<span class="token punctuation">))</span><span class="token punctuation">;</span> //ctl是用来对线程池的工作线程（workerCount）数和线程池的工作状态（runSate）控制的变量
+private static final int COUNT_BITS <span class="token operator">=</span> Integer.SIZE - 3<span class="token punctuation">;</span>  // 29
+private static final int CAPACITY   <span class="token operator">=</span> <span class="token punctuation">(</span>1 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">)</span> - 1<span class="token punctuation">;</span> //线程池最大容量
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+// runState is stored <span class="token keyword">in</span> the high-order bits
+private static final int RUNNING    <span class="token operator">=</span> -1 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">;</span>
+private static final int SHUTDOWN   <span class="token operator">=</span>  0 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">;</span>
+private static final int STOP       <span class="token operator">=</span>  1 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">;</span>
+private static final int TIDYING    <span class="token operator">=</span>  2 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">;</span>
+private static final int TERMINATED <span class="token operator">=</span>  3 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>线程池的物种状态</strong></p>
+<ul>
+<li><strong>1、RUNNING</strong>：线程池处于工作状态，可以接受新提交的任务到线程池中。</li>
+<li><strong>2、SHUTDOWN</strong>：关闭状态，在线程池为RUNNING状态调用shutdown()方法，此时线程池不会接收新的任务，会将已经线程池中任务执行完。</li>
+<li><strong>3、STOP</strong>：停止状态，线程池在RUNNING或SHUTDOWN状态时可以调用shutdownNow()方法,此时线程池不会接收新提交的任务，也不会处理线程池中处于阻塞队列中的任务。</li>
+<li><strong>4、TIDYING</strong>：当线程池中所有的任务都终止了线程池不在RUNNING状态，且阻塞队列中没有任务，调用terminated()方法，线程池会进入到TERMINATED </li>
+<li><em><em>5、TERMINATED </em></em>：调用terminated()方法后会进入到TERMINATED状态中，ThreadPoolExecutor默认什么都不做。<br>下图为线程池流转的状态：<br><img src="xianchengchi1.png" alt></li>
+</ul>
+<hr>
+<p><strong>线程池中几个重要的方法</strong></p>
 
             </div>
             <hr />
@@ -690,7 +691,7 @@ public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSiz
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《java�������֮�̳߳ص�ʹ��》
+                    《java并发编程之线程池的使用》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/30/bing-fa-bian-cheng-zhi-xian-cheng-chi/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -1025,15 +1026,15 @@ public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSiz
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="java�������֮�̳߳ص�ʹ��">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="java并发编程之线程池的使用">
                         
-                        <span class="card-title">java�������֮�̳߳ص�ʹ��</span>
+                        <span class="card-title">java并发编程之线程池的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            java�̳߳��������ճ������бȽ���Ҫ�ļ�������Ϊ�������Ͻ��ױ���Ҫ���յļ�����
+                            java线程池是我们日常工作中比较重要的技术，作为初级向上进阶必须要掌握的技术。
                         
                     </div>
                     <div class="publish-info">
@@ -1044,8 +1045,8 @@ public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSiz
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/HashMap/" class="post-category" target="_blank">
-                                    HashMap
+                            <a href="/categories/线程池/" class="post-category" target="_blank">
+                                    线程池
                                 </a>
                             
                             
@@ -1056,16 +1057,16 @@ public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSiz
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/���߳�/" target="_blank">
-                        <span class="chip bg-color">���߳�</span>
+                    <a href="/tags/多线程/" target="_blank">
+                        <span class="chip bg-color">多线程</span>
                     </a>
                     
-                    <a href="/tags/�������/" target="_blank">
-                        <span class="chip bg-color">�������</span>
+                    <a href="/tags/并发编程/" target="_blank">
+                        <span class="chip bg-color">并发编程</span>
                     </a>
                     
-                    <a href="/tags/�̳߳�/" target="_blank">
-                        <span class="chip bg-color">�̳߳�</span>
+                    <a href="/tags/线程池/" target="_blank">
+                        <span class="chip bg-color">线程池</span>
                     </a>
                     
                 </div>
@@ -1079,19 +1080,19 @@ public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSiz
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-collection/">
+                <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-san-ji-he-linkedhashmap/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="由浅入深理解java集合框架(一)集合Collection">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="由浅入深理解java集合框架(三)集合LinkedHashMap">
                         
-                        <span class="card-title">由浅入深理解java集合框架(一)集合Collection</span>
+                        <span class="card-title">由浅入深理解java集合框架(三)集合LinkedHashMap</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要对java集合的框架进行介绍，使大家对java集合的整体框架有个了解。具体介绍了Collection接口以及Collection接口的三个子接口Set，List，Queue。
+                            本篇文章主要对java集合的框架进行介绍，使大家对java集合的整体框架有个了解。具体介绍了Map接口以及Map的实现类，HashMap，LinkedHashMap，TreeMap。
                         
                     </div>
                     <div class="publish-info">
@@ -1102,8 +1103,8 @@ public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSiz
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Collection/" class="post-category" target="_blank">
-                                    Collection
+                            <a href="/categories/LinkedHashMap/" class="post-category" target="_blank">
+                                    LinkedHashMap
                                 </a>
                             
                             
@@ -1113,16 +1114,16 @@ public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSiz
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/集合框架/" target="_blank">
-                        <span class="chip bg-color">集合框架</span>
-                    </a>
-                    
                     <a href="/tags/java基础/" target="_blank">
                         <span class="chip bg-color">java基础</span>
                     </a>
                     
-                    <a href="/tags/集合/" target="_blank">
-                        <span class="chip bg-color">集合</span>
+                    <a href="/tags/集合框架/" target="_blank">
+                        <span class="chip bg-color">集合框架</span>
+                    </a>
+                    
+                    <a href="/tags/Map/" target="_blank">
+                        <span class="chip bg-color">Map</span>
                     </a>
                     
                 </div>
@@ -1277,7 +1278,7 @@ public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSiz
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">4k</span>
+            <span class="white-color">5.2k</span>
             
 
             <br>
