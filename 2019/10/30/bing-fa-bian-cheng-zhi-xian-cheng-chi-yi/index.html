@@ -4,14 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="由浅入深理解java集合框架(三)集合LinkedHashMap, ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
+    <meta name="keywords" content="java并发编程之线程池的使用(一), ECNU NLP DeepLearning AntNLP 蛋糕店 anicake">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="Map简介
-map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap
-java Map实现之LinkedHashMap
-Li">
+    <meta name="description" content="前言
+在工作中我们在有的业务需要异步处理时可以新创建一个线程去处理，这样看起来很简便，但是并发量大的时候，我们会创建大量的线程，并且线程执行的时间很短就结束了，这样频繁的创建和销毁线程，大大的降低了系统的效率，并且线程的利用率也不高。我们就">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +17,7 @@ Li">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>由浅入深理解java集合框架(三)集合LinkedHashMap | 蛋糕店的博客</title>
+    <title>java并发编程之线程池的使用(一) | 蛋糕店的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -289,13 +287,13 @@ Li">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        由浅入深理解java集合框架(三)集合LinkedHashMap
+                        java并发编程之线程池的使用(一)
                     </div>
                 </div>
             </div>
@@ -406,16 +404,16 @@ Li">
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/java基础/" target="_blank">
-                            <span class="chip bg-color">java基础</span>
+                        <a href="/tags/多线程/" target="_blank">
+                            <span class="chip bg-color">多线程</span>
                         </a>
                         
-                        <a href="/tags/集合框架/" target="_blank">
-                            <span class="chip bg-color">集合框架</span>
+                        <a href="/tags/并发编程/" target="_blank">
+                            <span class="chip bg-color">并发编程</span>
                         </a>
                         
-                        <a href="/tags/Map/" target="_blank">
-                            <span class="chip bg-color">Map</span>
+                        <a href="/tags/线程池/" target="_blank">
+                            <span class="chip bg-color">线程池</span>
                         </a>
                         
                     </div>
@@ -426,8 +424,8 @@ Li">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/LinkedHashMap/" class="post-category" target="_blank">
-                            LinkedHashMap
+                        <a href="/categories/线程池/" class="post-category" target="_blank">
+                            线程池
                         </a>
                         
                     </div>
@@ -438,7 +436,7 @@ Li">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-10-20
+                    2019-10-30
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -452,14 +450,14 @@ Li">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    954
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    8 分
                 </div>
                 
                 
@@ -475,105 +473,155 @@ Li">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Map简介"><a href="#Map简介" class="headerlink" title="Map简介"></a>Map简介</h1><hr>
-<p>map是一种映射的数据结构，以key-value键值对的形式存储，java中自带了有多种map的实现，也提供了一个用于帮助我们实现自己的Map的抽象类AbstractMap</p>
-<h1 id="java-Map实现之LinkedHashMap"><a href="#java-Map实现之LinkedHashMap" class="headerlink" title="java Map实现之LinkedHashMap"></a>java Map实现之LinkedHashMap</h1><hr>
-<h2 id="LinkedHashMap简介"><a href="#LinkedHashMap简介" class="headerlink" title="LinkedHashMap简介"></a>LinkedHashMap简介</h2><hr>
-<p>在了解了<a href="https://anicake.github.io/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-hashmap" target="_blank" rel="noopener">HashMap</a>我们知道HashMap在put元素时是无序的，元素的位置是根据元素的key计算出来的。当我们的业务需要map具有按插入顺序排序能力的时候，LinkedHashMap是具备这样按插入顺序排序的能力的底层是双向列表和数组的数据结构，LinkedHashMap继承了HashMap重写了HashMap中的部分方法。简单写一个程序</p>
-<pre class="line-numbers language-bash"><code class="language-bash">Map<span class="token operator">&lt;</span>String,Integer<span class="token operator">></span> map <span class="token operator">=</span> new LinkedHashMap<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"语文"</span>, 1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"数学"</span>, 2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"英语"</span>, 3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"历史"</span>, 4<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"政治"</span>, 5<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"地理"</span>, 6<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"生物"</span>, 7<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    map.put<span class="token punctuation">(</span><span class="token string">"化学"</span>, 8<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span> <span class="token punctuation">(</span>Map.Entry<span class="token operator">&lt;</span>String,Integer<span class="token operator">></span> entry <span class="token keyword">:</span> map.entrySet<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
-    System.out.println<span class="token punctuation">(</span>entry.getKey<span class="token punctuation">(</span><span class="token punctuation">)</span> + <span class="token string">"-->"</span>+entry.getValue<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>输出结果：<br>语文–&gt;1<br>数学–&gt;2<br>英语–&gt;3<br>历史–&gt;4<br>政治–&gt;5<br>地理–&gt;6<br>生物–&gt;7<br>化学–&gt;8</p>
-<h2 id="LinkedHashMap中的重要实现"><a href="#LinkedHashMap中的重要实现" class="headerlink" title="LinkedHashMap中的重要实现"></a>LinkedHashMap中的重要实现</h2><hr>
-<p>HashMap中定义了3个方法：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">// Callbacks to allow LinkedHashMap post-actions
-    void afterNodeAccess<span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
-    void afterNodeInsertion<span class="token punctuation">(</span>boolean evict<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
-    void afterNodeRemoval<span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>put操作</strong><br>LinkedHashMap没有覆盖HashMap的put方法，所以put操作跟HashMap是一样的。但是它覆盖了newNode方法，也就是说构造新节点的时候，LinkedHashMap跟HashMap是不一样的：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> newNode<span class="token punctuation">(</span>int hash, K key, V value, Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    // 使用Entry双向链表构造节点，而不是HashMap的Node单向链表
-    LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p <span class="token operator">=</span>
-        new LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span><span class="token punctuation">(</span>hash, key, value, e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    linkNodeLast<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span> // 更新双向链表，这一操作在HashMap里面是没有的
-    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>当put的元素在map中的key已存在时会调用afterNodeAccess方法:</p>
-<pre class="line-numbers language-bash"><code class="language-bash">void afterNodeAccess<span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> // move node to last
-    LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span> last<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>accessOrder <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>last <span class="token operator">=</span> tail<span class="token punctuation">)</span> <span class="token operator">!=</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> // 使用访问顺序，把节点移动到双向链表的最后面，如果已经在最后面了，不需要进行移动
-        LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p <span class="token operator">=</span>
-            <span class="token punctuation">(</span>LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span><span class="token punctuation">)</span>e, b <span class="token operator">=</span> p.before, a <span class="token operator">=</span> p.after<span class="token punctuation">;</span>
-        p.after <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>b <span class="token operator">==</span> null<span class="token punctuation">)</span> // 特殊情况，处理头节点
-            <span class="token function">head</span> <span class="token operator">=</span> a<span class="token punctuation">;</span>
-        <span class="token keyword">else</span>
-            b.after <span class="token operator">=</span> a<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">!=</span> null<span class="token punctuation">)</span> //处理节点
-            a.before <span class="token operator">=</span> b<span class="token punctuation">;</span>
-        <span class="token keyword">else</span>
-            last <span class="token operator">=</span> b<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>last <span class="token operator">==</span> null<span class="token punctuation">)</span> //// 特殊情况，处理尾节点
-            <span class="token function">head</span> <span class="token operator">=</span> p<span class="token punctuation">;</span>
-        <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            p.before <span class="token operator">=</span> last<span class="token punctuation">;</span>
-            last.after <span class="token operator">=</span> p<span class="token punctuation">;</span>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><hr>
+<p>在工作中我们在有的业务需要异步处理时可以新创建一个线程去处理，这样看起来很简便，但是并发量大的时候，我们会创建大量的线程，并且线程执行的时间很短就结束了，这样频繁的创建和销毁线程，大大的降低了系统的效率，并且线程的利用率也不高。<br>我们就需要解决这个问题让线程可以复用，这个线程执行完任务，可以继续执行别的任务，而不是直接销毁。这时候我们可以使用java提供的线程池来达到我们的需求。</p>
+<h2 id="Java中的ThreadPoolExecutor类"><a href="#Java中的ThreadPoolExecutor类" class="headerlink" title="Java中的ThreadPoolExecutor类"></a>Java中的ThreadPoolExecutor类</h2><hr>
+<p>ThreadPoolExecutor类是jdk自带的创建线程池核心的类，如果想要创建线程池必须理解这个类，下面我们一起来看这个类的源码：<br>ThreadPoolExecutor有四个构造方法</p>
+<pre class="line-numbers language-bash"><code class="language-bash">public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<span class="token operator">&lt;</span>Runnable<span class="token operator">></span> workQueue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+    <span class="token punctuation">}</span>
+public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<span class="token operator">&lt;</span>Runnable<span class="token operator">></span> workQueue,
+        ThreadFactory threadFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+    <span class="token punctuation">}</span>    
+public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<span class="token operator">&lt;</span>Runnable<span class="token operator">></span> workQueue,
+        RejectedExecutionHandler handler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+    <span class="token punctuation">}</span>
+ public ThreadPoolExecutor<span class="token punctuation">(</span>int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,BlockingQueue<span class="token operator">&lt;</span>Runnable<span class="token operator">></span> workQueue,
+            ThreadFactory threadFactory,RejectedExecutionHandler handler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>构造方法参数</strong></p>
+<ul>
+<li><strong>1、corePoolSize</strong>：核心线程数。线程池在创建的时候默认不会创建线程，当有任务添加进来时就会创建新的线程，当线程数量达到corePoolSize的时候，新加的任务会被添加到BlockingQueue（阻塞队列）中去；</li>
+<li><strong>2、maximumPoolSize</strong>：线程池最大线程数，这个参数也是一个非常重要的参数，它表示在线程池中最多能创建多少个线程；</li>
+<li><strong>3、keepAliveTime</strong>：空闲线程保持活性的时间；默认情况下keepAliveTime只有当线程池中的线程数大于corePoolSize时才会起作用，直到线程中的线程数量小于corePoolSize，如果需要小于corePoolSize时也让keepAliveTime有起作用需要调用allowCoreThreadTimeOut(boolean)方法</li>
+<li><strong>4、unit</strong>：keepAliveTime时间单位；<pre class="line-numbers language-bash"><code class="language-bash">TimeUnit.DAYS<span class="token punctuation">;</span>               //天
+TimeUnit.HOURS<span class="token punctuation">;</span>             //小时
+TimeUnit.MINUTES<span class="token punctuation">;</span>           //分钟
+TimeUnit.SECONDS<span class="token punctuation">;</span>           //秒
+TimeUnit.MILLISECONDS<span class="token punctuation">;</span>      //毫秒
+TimeUnit.MICROSECONDS<span class="token punctuation">;</span>      //微妙
+TimeUnit.NANOSECONDS<span class="token punctuation">;</span>       //纳秒<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+_ <strong>5、workQueue</strong>:一个阻塞队列，线程池创建的线程的数量大于corePoolSize时需要将后面加入的任务放入阻塞队列，这个参数的选择也很重要，对创建什么样线程池有很大的影响。一般有以下几种选择；<br>ArrayBlockingQueue;是一个有界阻塞队列，此队列按先进先出的（FIFO）顺序。<br>LinkedBlockingQueue;默认是一个无界阻塞队列可以指定大小，此队列也是按照先进先出的顺序。吞吐量大于ArrayBlockingQueue。<br>SynchronousQueue; 没有容量，是无缓冲等待队列，是一个不存储元素的阻塞队列，会直接将任务交给消费者，必须等队列中的添加元素被消费后才能继续添加新的元素。<br>PriorityBlockingQueue;一个具有优先级的无限阻塞队列。</li>
+<li><strong>6、threadFactory</strong>：创建线程的线程工厂；</li>
+<li><strong>7、handler</strong>：当线程池饱和的时候拒绝策略。线程池默认提供了四种拒绝策略：<br>AbortPolicy：直接抛出RejectedExecutionException异常。（线程池默认使用的策略）<br>DiscardPolicy：什么都不处理，直接将任务丢弃。<br>DiscardOldestPolicy：丢弃阻塞队列最前面的任务，执行这个任务。<br>CallerRunsPolicy：使用调用者的线程执行当前任务。<br>可以自定义自己的拒绝策略只要实现RejectedExecutionHandler这个类就可以</li>
+</ul>
+<p><strong>几个重要的字段</strong></p>
+<pre class="line-numbers language-bash"><code class="language-bash">private final AtomicInteger ctl <span class="token operator">=</span> new AtomicInteger<span class="token punctuation">(</span>ctlOf<span class="token punctuation">(</span>RUNNING, 0<span class="token punctuation">))</span><span class="token punctuation">;</span> //ctl是用来对线程池的工作线程（workerCount）数和线程池的工作状态（runSate）控制的变量
+private static final int COUNT_BITS <span class="token operator">=</span> Integer.SIZE - 3<span class="token punctuation">;</span>  // 29
+private static final int CAPACITY   <span class="token operator">=</span> <span class="token punctuation">(</span>1 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">)</span> - 1<span class="token punctuation">;</span> //线程池最大容量
+
+// runState is stored <span class="token keyword">in</span> the high-order bits
+private static final int RUNNING    <span class="token operator">=</span> -1 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">;</span>
+private static final int SHUTDOWN   <span class="token operator">=</span>  0 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">;</span>
+private static final int STOP       <span class="token operator">=</span>  1 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">;</span>
+private static final int TIDYING    <span class="token operator">=</span>  2 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">;</span>
+private static final int TERMINATED <span class="token operator">=</span>  3 <span class="token operator">&lt;&lt;</span> COUNT_BITS<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>线程池的五种状态</strong></p>
+<ul>
+<li><strong>1、RUNNING</strong>：线程池处于工作状态，可以接受新提交的任务到线程池中。</li>
+<li><strong>2、SHUTDOWN</strong>：关闭状态，在线程池为RUNNING状态调用shutdown()方法，此时线程池不会接收新的任务，会将已经线程池中任务执行完。</li>
+<li><strong>3、STOP</strong>：停止状态，线程池在RUNNING或SHUTDOWN状态时可以调用shutdownNow()方法,此时线程池不会接收新提交的任务，也不会处理线程池中处于阻塞队列中的任务。</li>
+<li><strong>4、TIDYING</strong>：当线程池中所有的任务都终止了线程池不在RUNNING状态，且阻塞队列中没有任务，调用terminated()方法，线程池会进入到TERMINATED </li>
+<li><em><em>5、TERMINATED </em></em>：调用terminated()方法后会进入到TERMINATED状态中，ThreadPoolExecutor默认什么都不做。<br>下图为线程池流转的状态：<br><img src="xianchengchi1.png" alt></li>
+</ul>
+<hr>
+<p><strong>线程池中几个重要的方法</strong><br>execute(Runnable command);<br>submit(Runnable task);<br>shutdown();<br>shutdownNow();<br>isTerminated();<br><strong>任务提交执行</strong><br>1、可以用execute(Runnable command)和submit(Runnable task)来提交任务。<br>(1)、用execute提交的任务是没有返回值的，提交之后是无法知道任务执行是否成功</p>
+<pre class="line-numbers language-bash"><code class="language-bash">public void execute<span class="token punctuation">(</span>Runnable command<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>command <span class="token operator">==</span> null<span class="token punctuation">)</span>
+        throw new NullPointerException<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    int c <span class="token operator">=</span> ctl.get<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    //判断目前工作的线程是否已经达到核心线程数
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>workerCountOf<span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">&lt;</span> corePoolSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        //任务提交到线程池中执行并维护线程池中工作线程数<span class="token punctuation">(</span>里面有线程池状态和线程数的校验<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>addWorker<span class="token punctuation">(</span>command, true<span class="token punctuation">))</span>
+        //执行成功直接返回
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        c <span class="token operator">=</span> ctl.get<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    //判断线程池是否在运行状态，将任务加到阻塞队列中去
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isRunning<span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> workQueue.offer<span class="token punctuation">(</span>command<span class="token punctuation">))</span> <span class="token punctuation">{</span>
+        int recheck <span class="token operator">=</span> ctl.get<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //重复判断当前状态是否是运行状态，如果不是则将加入队列的任务出队
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span> isRunning<span class="token punctuation">(</span>recheck<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> remove<span class="token punctuation">(</span>command<span class="token punctuation">))</span>
+        //执行线程池的拒绝策略
+            reject<span class="token punctuation">(</span>command<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            //  1. 当前线程池处于 Running 状态，但是工作线程数量为 0，
+            //      需要创建新的线程
+            //  2. 移除任务失败，但是工作线程数量为 0，
+            //      需要创建新的线程来完成移除失败的任务
+            //
+            //  因为前面对任务做了判断，所以正常情况下向 addWorker 里传入的任务
+            //  不可能为 null，这里传入 null 是告诉 addWorker 需要创建新的线程，
+            //  在 addWorker 里对 null 有专门的处理逻辑
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>workerCountOf<span class="token punctuation">(</span>recheck<span class="token punctuation">)</span> <span class="token operator">==</span> 0<span class="token punctuation">)</span>
+            addWorker<span class="token punctuation">(</span>null, false<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    //说明线程池不是 Running 状态或者任务队列满了，
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>addWorker<span class="token punctuation">(</span>command, false<span class="token punctuation">))</span>
+    //执行拒绝策略
+        reject<span class="token punctuation">(</span>command<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+举个栗子：
+ExecutorService executor <span class="token operator">=</span> new ThreadPoolExecutor<span class="token punctuation">(</span>5,10,500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>int i <span class="token operator">=</span> 0<span class="token punctuation">;</span> i<span class="token operator">&lt;</span> 10 <span class="token punctuation">;</span>i++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    int finalI <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    executor.execute<span class="token punctuation">(</span>new Runnable<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        @Override
+        public void run<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span>Thread.currentThread<span class="token punctuation">(</span><span class="token punctuation">)</span>.getName<span class="token punctuation">(</span><span class="token punctuation">)</span> + <span class="token string">"执行。。。。。。"</span>+ finalI<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token function">tail</span> <span class="token operator">=</span> p<span class="token punctuation">;</span>
-        ++modCount<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果key不存在则会调用afterNodeInsertion方法:</p>
-<pre class="line-numbers language-bash"><code class="language-bash">void afterNodeInsertion<span class="token punctuation">(</span>boolean evict<span class="token punctuation">)</span> <span class="token punctuation">{</span> // possibly remove eldest
-    LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span> first<span class="token punctuation">;</span>
-    //removeEldestEntry方法LinkedHashMap永远返回false,如果需要自定义需覆盖这个方法
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>evict <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>first <span class="token operator">=</span> head<span class="token punctuation">)</span> <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> removeEldestEntry<span class="token punctuation">(</span>first<span class="token punctuation">))</span> <span class="token punctuation">{</span>
-        K key <span class="token operator">=</span> first.key<span class="token punctuation">;</span>
-        removeNode<span class="token punctuation">(</span>hash<span class="token punctuation">(</span>key<span class="token punctuation">)</span>, key, null, false, true<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>get操作</strong><br>LinkedHashMap中重写了HashMap中的get方法：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">public V get<span class="token punctuation">(</span>Object key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> e<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token variable"><span class="token punctuation">((</span>e <span class="token operator">=</span> getNode<span class="token punctuation">(</span>hash<span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token punctuation">))</span></span> <span class="token operator">==</span> null<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-    //如果使用访问顺序则需要执行afterNodeAccess
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>accessOrder<span class="token punctuation">)</span>
-        afterNodeAccess<span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> e.value<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>remove操作</strong><br>LinkedHashMap的remove方法没有复写HashMap的remove方法，但是同样实现了afterNodeRemoval这个钩子方法：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">// 更新双向链表
-void afterNodeRemoval<span class="token punctuation">(</span>Node<span class="token operator">&lt;</span>K,V<span class="token operator">></span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> // unlink
-    LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span> p <span class="token operator">=</span>
-        <span class="token punctuation">(</span>LinkedHashMap.Entry<span class="token operator">&lt;</span>K,V<span class="token operator">></span><span class="token punctuation">)</span>e, b <span class="token operator">=</span> p.before, a <span class="token operator">=</span> p.after<span class="token punctuation">;</span>
-    p.before <span class="token operator">=</span> p.after <span class="token operator">=</span> null<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>b <span class="token operator">==</span> null<span class="token punctuation">)</span>
-        <span class="token function">head</span> <span class="token operator">=</span> a<span class="token punctuation">;</span>
-    <span class="token keyword">else</span>
-        b.after <span class="token operator">=</span> a<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">==</span> null<span class="token punctuation">)</span>
-        <span class="token function">tail</span> <span class="token operator">=</span> b<span class="token punctuation">;</span>
-    <span class="token keyword">else</span>
-        a.before <span class="token operator">=</span> b<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="xianchengchi2.png" alt><br>(2)、submit方法用于提交一个任务并带有返回值，这个方法将返回一个Future类型对象。可以通过这个返回对象判断任务是否执行成功，并且可以通过future.get()方法来获取返回值，get()方法会阻塞当前线程直到任务完成。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">//如果执行成功则返回null，执行失败抛出异常
+public Future<span class="token operator">&lt;</span>?<span class="token operator">></span> submit<span class="token punctuation">(</span>Runnable task<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>task <span class="token operator">==</span> null<span class="token punctuation">)</span> throw new NullPointerException<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    RunnableFuture<span class="token operator">&lt;</span>Void<span class="token operator">></span> ftask <span class="token operator">=</span> newTaskFor<span class="token punctuation">(</span>task, null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    execute<span class="token punctuation">(</span>ftask<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> ftask<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+//执行成功返回执行成功返回值result，执行失败抛出异常
+public <span class="token operator">&lt;</span>T<span class="token operator">></span> Future<span class="token operator">&lt;</span>T<span class="token operator">></span> submit<span class="token punctuation">(</span>Runnable task, T result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>task <span class="token operator">==</span> null<span class="token punctuation">)</span> throw new NullPointerException<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    RunnableFuture<span class="token operator">&lt;</span>T<span class="token operator">></span> ftask <span class="token operator">=</span> newTaskFor<span class="token punctuation">(</span>task, result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    execute<span class="token punctuation">(</span>ftask<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> ftask<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>accessOrder属性分析</strong><br>LinkedHashMap的accessOrder属性默认情况下为false就时按照插入的顺序排序，如果accessOrder属性设置为true则按照访问的顺序，那么afterNodeAccess这个钩子方法内部的逻辑会被执行，LinkedHashMap会在被访问之后修改双向链表的结构。<br>afterNodeAccess在使用get方法或者put方法遇到关键字已经存在的情况下，会被触发。<br><strong>注意事项</strong><br>如果accessOrder设置为true那么使用下面的方法遍历会报错</p>
-<pre class="line-numbers language-bash"><code class="language-bash">for<span class="token punctuation">(</span>String str <span class="token keyword">:</span> map.keySet<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
-    System.out.println<span class="token punctuation">(</span>map.get<span class="token punctuation">(</span>str<span class="token punctuation">))</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p><img src="linkedhashmap1.png" alt><br>需要按照这种方法遍历</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token punctuation">(</span>Map.Entry<span class="token operator">&lt;</span>String,Integer<span class="token operator">></span> entry <span class="token keyword">:</span> map.entrySet<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">{</span>
-    System.out.println<span class="token punctuation">(</span>entry.getKey<span class="token punctuation">(</span><span class="token punctuation">)</span> + <span class="token string">"-->"</span>+entry.getValue<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>举个栗子：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">ExecutorService executor <span class="token operator">=</span>
+                new ThreadPoolExecutor<span class="token punctuation">(</span>5,10,500, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> list <span class="token operator">=</span> new ArrayList<span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+FutureTask<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> task1 <span class="token operator">=</span> new FutureTask<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span><span class="token punctuation">(</span>new Callable<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    @Override
+    public List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> call<span class="token punctuation">(</span><span class="token punctuation">)</span> throws Exception <span class="token punctuation">{</span>
+        list.add<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> list<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Future<span class="token operator">&lt;</span>?<span class="token operator">></span> future1 <span class="token operator">=</span>  executor.submit<span class="token punctuation">(</span>task1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+try <span class="token punctuation">{</span>
+    System.out.println<span class="token punctuation">(</span>future1.get<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> catch <span class="token punctuation">(</span>Exception e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    executor.shutdownNow<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+FutureTask<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> task2 <span class="token operator">=</span> new FutureTask<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span><span class="token punctuation">(</span>new Callable<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    @Override
+    public List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> call<span class="token punctuation">(</span><span class="token punctuation">)</span> throws Exception <span class="token punctuation">{</span>
+        list.add<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> list<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Future<span class="token operator">&lt;</span>?<span class="token operator">></span> future2 <span class="token operator">=</span>  executor.submit<span class="token punctuation">(</span>task2,list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+try <span class="token punctuation">{</span>
+    System.out.println<span class="token punctuation">(</span>future2.get<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> catch <span class="token punctuation">(</span>Exception e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    executor.shutdownNow<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行结果 null [1,1]<br><strong>关闭线程池</strong><br>1、shutdown()这个方法将线程池的状态设置为SHUTDOWN，关闭外部提交任务的通道，但是线程池内部的阻塞队列中的任务还是继续执行的，并不会立即停止<br>2、shutdownNow()这个方法是将线程池的状态设置为STOP，会关闭外部提交任务的通道，线程池正在执行的任务会被中止忽略队列里等待的任务，并且会返回未执行的任务列表。<br>3、isTerminated()这个方法线程池正常完成都是返回true，当线程池调用shutdown()后，待线程池中所有的任务都执行完成则返回true,当线程池调用shutdownNow()后，线程池中止所有任务后返回true.<br><strong>其他方法</strong><br>executor.getActiveCount();返回活跃线程数<br>executor.getCorePoolSize();返回线程池的核心线程数<br>executor.getTaskCount();返回线程池中的任务总数<br>executor.getMaximumPoolSize();返回线程池的最大线程数<br>executor.getQueue(); 获取当前线程池的阻塞队列<br>……<br>……</p>
 
             </div>
             <hr />
@@ -732,9 +780,9 @@ void afterNodeRemoval<span class="token punctuation">(</span>Node<span class="to
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《由浅入深理解java集合框架(三)集合LinkedHashMap》
+                    《java并发编程之线程池的使用(一)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-san-ji-he-linkedhashmap/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/30/bing-fa-bian-cheng-zhi-xian-cheng-chi-yi/" property="cc:attributionName"
                rel="cc:attributionURL">
                 蛋糕店
             </a> 采用
@@ -775,7 +823,7 @@ void afterNodeRemoval<span class="token punctuation">(</span>Node<span class="to
         repo: 'https://github.com/anicake/anicake.github.io',
         owner: 'anicake',
         admin: "godweiyang",
-        id: '2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-san-ji-he-linkedhashmap/',
+        id: '2019/10/30/bing-fa-bian-cheng-zhi-xian-cheng-chi-yi/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1058,9 +1106,68 @@ void afterNodeRemoval<span class="token punctuation">(</span>Node<span class="to
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2019/10/30/bing-fa-bian-cheng-zhi-xian-cheng-chi-yi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="java并发编程之线程池的使用(一)">
+                        
+                        <span class="card-title">java并发编程之线程池的使用(一)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            java线程池是我们日常工作中比较重要的技术，作为初级向上进阶必须要掌握的技术。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/线程池/" class="post-category" target="_blank">
+                                    线程池
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/多线程/" target="_blank">
+                        <span class="chip bg-color">多线程</span>
+                    </a>
+                    
+                    <a href="/tags/并发编程/" target="_blank">
+                        <span class="chip bg-color">并发编程</span>
+                    </a>
+                    
+                    <a href="/tags/线程池/" target="_blank">
+                        <span class="chip bg-color">线程池</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-yi-ji-he-collection/">
                     <div class="card-image">
@@ -1078,9 +1185,9 @@ void afterNodeRemoval<span class="token punctuation">(</span>Node<span class="to
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1106,63 +1213,6 @@ void afterNodeRemoval<span class="token punctuation">(</span>Node<span class="to
                     
                     <a href="/tags/集合/" target="_blank">
                         <span class="chip bg-color">集合</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/10/20/you-qian-ru-shen-li-jie-java-ji-he-kuang-jia-er-ji-he-hashmap/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="由浅入深理解java集合框架(二)集合HashMap">
-                        
-                        <span class="card-title">由浅入深理解java集合框架(二)集合HashMap</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            本篇文章主要对java集合的框架进行介绍，使大家对java集合的整体框架有个了解。具体介绍了Map接口以及Map的实现类，HashMap，LinkedHashMap，TreeMap。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-20
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/HashMap/" class="post-category" target="_blank">
-                                    HashMap
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/java基础/" target="_blank">
-                        <span class="chip bg-color">java基础</span>
-                    </a>
-                    
-                    <a href="/tags/集合框架/" target="_blank">
-                        <span class="chip bg-color">集合框架</span>
-                    </a>
-                    
-                    <a href="/tags/Map/" target="_blank">
-                        <span class="chip bg-color">Map</span>
                     </a>
                     
                 </div>
